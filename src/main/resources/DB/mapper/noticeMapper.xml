@@ -21,7 +21,7 @@
 	</update>
 
 	<update id="boardHit" parameterType="com.iu.s5.notice.NoticeVO">
-		
+		update notice2 set hit=hit+1 where num=#{num}
 	</update>
 
 </mapper>  

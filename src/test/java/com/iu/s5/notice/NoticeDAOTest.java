@@ -17,6 +17,7 @@ public class NoticeDAOTest extends AbstractTestCase {
 	public void daoIsnull() {
 		assertNotNull(noticeDAO);
 	}
+	
 //	@Test
 //	public void boardWriteTest() throws Exception{
 //		NoticeVO noticeVO = new NoticeVO();
@@ -46,5 +47,14 @@ public class NoticeDAOTest extends AbstractTestCase {
 		
 		assertNotEquals(0,result); 
 		
+	}
+	
+	@Test
+	public void boardHit() throws Exception{
+		NoticeVO noticeVO = new NoticeVO();
+		noticeVO.setNum(2);
+		int result = noticeDAO.boardHit(noticeVO);
+		
+		assertNotEquals(0, result);
 	}
 }
