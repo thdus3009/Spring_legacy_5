@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.iu.s5.notice.NoticeDAO">
+	
+	<!-- 주의 : insert안에 세미콜론 붙이면 안된다. -->
+	<!-- sql문 작성 -->
+	
+	<insert id="boardWrite" parameterType="com.iu.s5.notice.NoticeVO">
+		insert into notice2 values(board_seq.nextval,#{title},#{writer},#{contents},sysdate,0)
+	</insert>
+	
+	<delete id="boardDelete" parameterType="java.lang.Long">
+		delete notice2 where num=#{num}
+	</delete>
+	
+	<update id="boardUpdate" parameterType="com.iu.s5.notice.NoticeVO">
+		update notice2 set title=#{title} , contents=#{contents} where num=#{num}
+	</update>
+
+	<update id="boardHit" parameterType="com.iu.s5.notice.NoticeVO">
+		
+	</update>
+
+</mapper>  
