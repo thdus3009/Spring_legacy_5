@@ -3,6 +3,7 @@ package com.iu.s5.notice;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,17 @@ public class NoticeDAO implements BoardDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.iu.s5.notice.NoticeDAO.";
 	
+	
 	@Override
-	public List<BoardVO> boardList() throws Exception {
+	public long boardCount() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+"boardCount");
+	}
+	
+	@Override
+	public List<BoardVO> boardList(Map<String, Integer> map) throws Exception {
 		// 결과값이 여러개이기 때문에 return이 List타입이다. / 결과물이 하나면 One으로 
-		return sqlSession.selectList(NAMESPACE+"boardList");
+		return sqlSession.selectList(NAMESPACE+"boardList",map);
 	}
 
 	@Override //num = mapper의 변수명

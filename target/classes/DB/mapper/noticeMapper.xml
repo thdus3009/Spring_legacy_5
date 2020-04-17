@@ -8,8 +8,18 @@
 	<!-- 주의 : insert안에 세미콜론 붙이면 안된다. -->
 	<!-- sql문 작성 -->
 	
-	<select id="boardList" resultType="com.iu.s5.notice.NoticeVO">
-		select * from notice2 order by num desc
+	<!-- 전체글의 갯수 -->
+	<select id="boardCount" resultType="java.lang.Long">
+	<!-- select문은 resultType 필요함 / 결과값이 정수라서 integer또는 long타입-->
+		select count(num) from notice2
+	</select>
+	
+	
+	<select id="boardList" parameterType="java.util.Map"  resultType="com.iu.s5.notice.NoticeVO">
+		select * from
+			(select N.*, rownum R from
+			(select * from notice2 order by num desc) N) --이것을 컬럼명N이라는 가상의 테이블로 만듬
+			where R between #{startRow} and #{lastRow}
 	</select>
 	
 	<select id="boardSelect" parameterType="java.lang.Long" resultType="com.iu.s5.notice.NoticeVO">

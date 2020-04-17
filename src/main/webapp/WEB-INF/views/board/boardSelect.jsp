@@ -19,8 +19,8 @@
 	</div>
 	
 	<div><br><br>
-		&nbsp; &nbsp;<button><a href="./noticeUpdate">Update</a></button>
-		&nbsp; &nbsp;<button><a href="./noticeDelete">Delete</a></button>
+		&nbsp; &nbsp;<button><a href="./noticeUpdate?num=${vo.num}">Update</a></button>
+		&nbsp; &nbsp;<button><a href="./noticeDelete?num=${vo.num}">Delete</a></button>
 	</div>
 </body>
 </html>

@@ -5,7 +5,7 @@ import java.util.List;
 public interface BoardService {
 	
 	//list
-	public List<BoardVO> boardList() throws Exception;
+	public List<BoardVO> boardList(int curPage) throws Exception;
 	
 	//select
 	public BoardVO boardSelect(long num) throws Exception;

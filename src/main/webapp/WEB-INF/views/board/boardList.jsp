@@ -16,6 +16,7 @@
 	<c:import url="../template/header.jsp"></c:import>
 <div class="container">
 	<div class="row">
+	<h1>${board} List</h1>
 		<table class="table table-hover">
 			<tr>
 				<td>num</td>

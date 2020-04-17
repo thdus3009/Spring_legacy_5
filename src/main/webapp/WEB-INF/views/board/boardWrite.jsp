@@ -14,11 +14,16 @@
 
 <div class="container">
 	<div class="row">
-		<form action="./boardWrite" id="frm" method="post">
+		<form action="./noticeWrite" id="frm" method="post">
 		
 		<div class="form-group">
       <label for="title">TITLE:</label>
       <input type="text" class="form-control" id="title" name="title">
+    	</div>
+    	
+    	<div class="form-group">
+      <label for="writer">WRITER:</label>
+      <input type="text" class="form-control" id="writer" name="writer">
     	</div>
     	
 		<div class="form-group">
