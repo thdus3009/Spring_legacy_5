@@ -26,6 +26,8 @@ private NoticeDAO noticeDAO;
 		return noticeDAO.boardSelect(num);
 	}
 
+	//insert, update, delete >int
+	
 	@Override
 	public int boardWrite(BoardVO boardVO) throws Exception {
 		
