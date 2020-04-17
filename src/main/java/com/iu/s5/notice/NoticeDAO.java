@@ -20,14 +20,14 @@ public class NoticeDAO implements BoardDAO {
 	
 	@Override
 	public List<BoardVO> boardList() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		// 결과값이 여러개이기 때문에 return이 List타입이다. / 결과물이 하나면 One으로 
+		return sqlSession.selectList(NAMESPACE+"boardList");
 	}
 
-	@Override
-	public BoardVO boardSelect() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	@Override //num = mapper의 변수명
+	public BoardVO boardSelect(long num) throws Exception {
+	
+		return sqlSession.selectOne(NAMESPACE+"boardSelect", num);
 	}
 
 	@Override
@@ -50,9 +50,10 @@ public class NoticeDAO implements BoardDAO {
 	
 	
 	@Override
-	public int boardHit(BoardVO boardVO) throws Exception {
+	public int boardHit(long num) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.update(NAMESPACE+"boardHit", boardVO);
+		return sqlSession.update(NAMESPACE+"hitUpdate", num);
 	} 
 
+	
 }

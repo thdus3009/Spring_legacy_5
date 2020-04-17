@@ -8,6 +8,15 @@
 	<!-- 주의 : insert안에 세미콜론 붙이면 안된다. -->
 	<!-- sql문 작성 -->
 	
+	<select id="boardList" resultType="com.iu.s5.notice.NoticeVO">
+		select * from notice2 order by num desc
+	</select>
+	
+	<select id="boardSelect" parameterType="java.lang.Long" resultType="com.iu.s5.notice.NoticeVO">
+		select * from notice2 where num=#{num}
+	</select>
+	
+	
 	<insert id="boardWrite" parameterType="com.iu.s5.notice.NoticeVO">
 		insert into notice2 values(board_seq.nextval,#{title},#{writer},#{contents},sysdate,0)
 	</insert>
@@ -20,8 +29,13 @@
 		update notice2 set title=#{title} , contents=#{contents} where num=#{num}
 	</update>
 
-	<update id="boardHit" parameterType="com.iu.s5.notice.NoticeVO">
-		update notice2 set hit=hit+1 where num=#{num}
+	
+	<!-- insert,update,delete > int형
+		 select > NoticeVO --> 
+	<!-- 파라미터, 데이터변수명, db컬럼명 일치시키기 -->
+	
+	<update id="hitUpdate" parameterType="java.lang.Long">
+		update  notice2 set hit=hit+1 where num=#{num}
 	</update>
-
+	
 </mapper>  

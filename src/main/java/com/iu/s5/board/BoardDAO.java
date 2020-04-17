@@ -12,7 +12,7 @@ public interface BoardDAO {
 	public List<BoardVO> boardList() throws Exception;
 	
 	//select
-	public BoardVO boardSelect() throws Exception;
+	public BoardVO boardSelect(long num) throws Exception;
 	
 	//insert
 	public int boardWrite(BoardVO boardVO)throws Exception;
@@ -24,6 +24,6 @@ public interface BoardDAO {
 	public int boardUpdate(BoardVO boardVO)throws Exception;
 	
 	//hit
-	public int boardHit(BoardVO boardVO)throws Exception;
+	public int boardHit(long num)throws Exception;
 
 }
