@@ -18,7 +18,7 @@
 	<select id="boardList" parameterType="java.util.Map"  resultType="com.iu.s5.notice.NoticeVO">
 		select * from
 			(select N.*, rownum R from
-			(select * from notice2 order by num desc) N) --이것을 컬럼명N이라는 가상의 테이블로 만듬
+			(select * from notice2 order by num desc) N)
 			where R between #{startRow} and #{lastRow}
 	</select>
 	
