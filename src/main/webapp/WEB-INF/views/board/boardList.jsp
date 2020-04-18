@@ -37,6 +37,7 @@
 		
 		</table>
 		
+		 
 		<div>
 			<a href="./noticeWrite" class="btn btn-danger">WRITE</a>
 		</div>
