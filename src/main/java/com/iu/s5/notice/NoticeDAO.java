@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.iu.s5.board.BoardDAO;
 import com.iu.s5.board.BoardVO;
+import com.iu.s5.board.page.Pager;
 
 @Repository
 public class NoticeDAO implements BoardDAO {
@@ -21,15 +22,15 @@ public class NoticeDAO implements BoardDAO {
 	
 	
 	@Override
-	public long boardCount() throws Exception {
+	public long boardCount(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NAMESPACE+"boardCount");
+		return sqlSession.selectOne(NAMESPACE+"boardCount",pager);
 	}
 	
 	@Override
-	public List<BoardVO> boardList(Map<String, Integer> map) throws Exception {
+	public List<BoardVO> boardList(Pager pager) throws Exception {
 		// 결과값이 여러개이기 때문에 return이 List타입이다. / 결과물이 하나면 One으로 
-		return sqlSession.selectList(NAMESPACE+"boardList",map);
+		return sqlSession.selectList(NAMESPACE+"boardList",pager);
 	}
 
 	@Override //num = mapper의 변수명
@@ -58,7 +59,7 @@ public class NoticeDAO implements BoardDAO {
 	
 	
 	@Override
-	public int boardHit(long num) throws Exception {
+	public int hitUpdate(long num) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.update(NAMESPACE+"hitUpdate", num);
 	} 
