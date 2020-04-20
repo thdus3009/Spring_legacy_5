@@ -56,6 +56,9 @@
 		
 	</select>
 	
+	
+	
+	
 	<select id="boardSelect" parameterType="java.lang.Long" resultType="com.iu.s5.notice.NoticeVO">
 		select * from notice2 where num=#{num}
 	</select>

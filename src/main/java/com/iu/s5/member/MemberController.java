@@ -48,10 +48,21 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="memberJoin",  method= RequestMethod.POST )
-	public String memberJoin2(MemberVO memberVO) {
+	public ModelAndView memberJoin2(MemberVO memberVO,ModelAndView mv)throws Exception {
+		int result = memberService.memberJoin(memberVO);
+		
+		if(result>0) {
+			mv.setViewName("redirect:../");
+//			mv.addObject("result","Join Success");
+//			mv.addObject("path","redirect:../");
+//			mv.setViewName("common/result");
+		}else {
+			mv.addObject("result","Fail");
+			mv.addObject("path","memberJoin");
+			mv.setViewName("common/result");
+		}
 
-
-		return "redirect:../";
+		return mv;
 	}
 	
 	

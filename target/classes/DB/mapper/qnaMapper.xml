@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.iu.s5.notice.NoticeDAO">
-	
-	<!-- 주의 : insert안에 세미콜론 붙이면 안된다. -->
-	<!-- sql문 작성 -->
-	
-	
+<mapper namespace="com.iu.s5.qna.QnaDAO">
+		
+		
+	<!-- search  -->	
 	<sql id="search">
 		like '%'||#{search}||'%'
 	</sql>
@@ -16,7 +15,7 @@
 	<!-- 전체글의 갯수 -->
 	<select id="boardCount" parameterType="com.iu.s5.board.page.Pager" resultType="java.lang.Long">
 	<!-- select문은 resultType 필요함 / 결과값이 정수라서 integer또는 long타입-->
-		select count(num) from notice2
+		select count(num) from qna
 		<where><!--(단일if문) / 긴 쿼리문 동일하게 들어가는경우 변수에 넣어놓고 쓸수 있다. -->
 			<if test="kind=='bt'">
 				title <include refid="search"></include>
@@ -34,10 +33,10 @@
 	</select>
 	
 	
-	<select id="boardList" parameterType="com.iu.s5.board.page.Pager" resultType="com.iu.s5.notice.NoticeVO">
+	<select id="boardList" parameterType="com.iu.s5.board.page.Pager" resultType="com.iu.s5.qna.QnaVO">
 		select * from
 			(select N.*, rownum R from				
-				(select * from notice2 where 
+				(select * from qna where 
 				<choose><!-- mybatis에서 제공하는 switch문과 유사한것 : choose /mybatis.org들어가서 확인해보기-->
 					<when test="kind=='bw'">
 						writer
@@ -56,24 +55,24 @@
 		
 	</select>
 	
+	<!-- ........................................................................... -->
 	
 	
-	
-	<select id="boardSelect" parameterType="java.lang.Long" resultType="com.iu.s5.notice.NoticeVO">
-		select * from notice2 where num=#{num}
+	<select id="boardSelect" parameterType="java.lang.Long" resultType="com.iu.s5.qna.QnaVO">
+		select * from qna where num=#{num}
 	</select>
 	
 	
-	<insert id="boardWrite" parameterType="com.iu.s5.notice.NoticeVO">
-		insert into notice2 values(board_seq.nextval,#{title},#{writer},#{contents},sysdate,0)
+	<insert id="boardWrite" parameterType="com.iu.s5.qna.QnaVO">
+		insert into qna values(board_seq.nextval,#{title},#{writer},#{contents},sysdate,0)
 	</insert>
 	
 	<delete id="boardDelete" parameterType="java.lang.Long">
-		delete notice2 where num=#{num}
+		delete qna where num=#{num}
 	</delete>
 	
-	<update id="boardUpdate" parameterType="com.iu.s5.notice.NoticeVO">
-		update notice2 set title=#{title} , contents=#{contents} where num=#{num}
+	<update id="boardUpdate" parameterType="com.iu.s5.qna.QnaVO">
+		update qna set title=#{title} , contents=#{contents} where num=#{num}
 	</update>
 
 	
@@ -85,4 +84,5 @@
 		update  notice2 set hit=hit+1 where num=#{num}
 	</update>
 	
-</mapper>  
+
+</mapper>

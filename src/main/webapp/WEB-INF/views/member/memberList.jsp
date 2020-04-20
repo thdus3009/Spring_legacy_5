@@ -59,7 +59,23 @@
 		</table>
 	
 	
-	
+		<div>
+		
+		<ul class="pagination">
+		<c:if test="${pager.curBlock gt 1}">
+			<li><a href="./memberList?curPage+${pager.startNum-1}&kind=${pager.kind}&search=${pager.search} ">이전</a></li>
+		</c:if>
+		
+		<c:if test="">
+			<li style="margin-left: 10px"><a href="./memberList?curPage=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+		</c:if>
+		
+		<c:if test="${pager.curBlock lt pager.totalPage}">
+			<li><a href="./memberlist?curPage+${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">다음</a></li>
+		</c:if>
+		</ul>
+		
+		</div>
 	
 	
 	

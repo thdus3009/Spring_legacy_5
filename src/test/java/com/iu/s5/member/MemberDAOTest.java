@@ -26,7 +26,7 @@ public class MemberDAOTest {
 		String email="";
 		
 		
-		for(int i=0; i<150; i++) {
+		for(int i=4; i<150; i++) {
 		MemberVO memberVO = new MemberVO();
 		
 		if(i%3==0) {

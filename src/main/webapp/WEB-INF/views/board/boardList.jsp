@@ -60,7 +60,7 @@
 			</c:forEach>
 		
 		</table>
-		
+		<!-- vo : controller에서 지정 -->
 
 		
 		
