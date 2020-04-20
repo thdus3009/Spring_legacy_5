@@ -24,8 +24,8 @@
           <li><a href="#">Page 1-3</a></li>
         </ul>
       </li>
-      <li><a href="${pageContext.request.contextPath}/point/pointList">Point</a></li>
       <li><a href="${pageContext.request.contextPath}/notice/noticeList">Notice</a></li>
+      <li><a href="${pageContext.request.contextPath}/member/memberList">Member List</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
     
