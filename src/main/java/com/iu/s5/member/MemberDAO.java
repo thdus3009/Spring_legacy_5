@@ -10,9 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.iu.s5.board.BoardVO;
-import com.iu.s5.board.page.Pager;
-import com.iu.s5.member.memberpage.MemberPager;
-import com.sy.util.DBConnect;
+import com.iu.util.DBConnect;
+import com.iu.util.Pager;
 
 @Repository
 public class MemberDAO {
@@ -23,15 +22,15 @@ public class MemberDAO {
 	
 	
 
-	public long memberCount(MemberPager memberpager) throws Exception {
+	public long memberCount(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NAMESPACE+"memberCount",memberpager);
+		return sqlSession.selectOne(NAMESPACE+"memberCount",pager);
 	}
 	
 	//list 
-	public List<MemberVO> memberList(MemberPager memberpager) throws Exception {
+	public List<MemberVO> memberList(Pager pager) throws Exception {
 		// 결과값이 여러개이기 때문에 return이 List타입이다. / 결과물이 하나면 One으로 
-		return sqlSession.selectList(NAMESPACE+"memberList", memberpager);
+		return sqlSession.selectList(NAMESPACE+"memberList", pager);
 	}
 	
 	

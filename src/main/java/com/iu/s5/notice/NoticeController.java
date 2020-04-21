@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.s5.board.BoardVO;
-import com.iu.s5.board.page.Pager;
+import com.iu.util.Pager;
 
 //parameter를 curPage=1&perPage=10로 넘기기
 

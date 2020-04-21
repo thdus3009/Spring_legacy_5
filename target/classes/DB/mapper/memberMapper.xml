@@ -10,7 +10,7 @@
 </sql>
 
 <!-- 검색 -->
-<select id="memberCount" parameterType="com.iu.s5.member.memberpage.MemberPager" resultType="com.iu.s5.member.MemberVO">
+<select id="memberCount" parameterType="com.iu.s5.util.Pager" resultType="com.iu.s5.member.MemberVO">
 		select count(rownum) from member
 		<where>
 			<if test="kind=='id'">
@@ -32,7 +32,7 @@
 </select>
 
 
-	<select id="memberList" parameterType="com.iu.s5.member.memberpage.MemberPager" resultType="com.iu.s5.member.MemberVO">
+	<select id="memberList" parameterType="com.iu.s5.util.Pager" resultType="com.iu.s5.member.MemberVO">
 	select * from
 		(select N.*, rownum R from 
 			(select * from member where

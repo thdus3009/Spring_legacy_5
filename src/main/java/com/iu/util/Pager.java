@@ -1,4 +1,4 @@
-package com.iu.s5.board.page;
+package com.iu.util;
 
 public class Pager {
 
@@ -44,7 +44,7 @@ public class Pager {
 					this.totalBlock++;
 				}
 				
-				//4.curPage 로 curBlock찾기
+				//4.curPage 로 curBlock찾기 / curPage 1~5 > curBlock 1 , curPage 6~10 > curBlock 2 .... 
 				this.curBlock = this.curPage/perBlock;
 				if(this.curPage%perBlock != 0) {
 					this.curBlock++;

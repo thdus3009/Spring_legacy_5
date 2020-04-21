@@ -14,7 +14,7 @@
 	</sql>
 	
 	<!-- 전체글의 갯수 -->
-	<select id="boardCount" parameterType="com.iu.s5.board.page.Pager" resultType="java.lang.Long">
+	<select id="boardCount" parameterType="com.iu.s5.util.Pager" resultType="java.lang.Long">
 	<!-- select문은 resultType 필요함 / 결과값이 정수라서 integer또는 long타입-->
 		select count(num) from notice2
 		<where><!--(단일if문) / 긴 쿼리문 동일하게 들어가는경우 변수에 넣어놓고 쓸수 있다. -->
@@ -34,7 +34,7 @@
 	</select>
 	
 	
-	<select id="boardList" parameterType="com.iu.s5.board.page.Pager" resultType="com.iu.s5.notice.NoticeVO">
+	<select id="boardList" parameterType="com.iu.s5.util.Pager" resultType="com.iu.s5.notice.NoticeVO">
 		select * from
 			(select N.*, rownum R from				
 				(select * from notice2 where 

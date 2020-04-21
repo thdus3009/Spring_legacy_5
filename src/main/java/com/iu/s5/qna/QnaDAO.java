@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.iu.s5.board.BoardDAO;
 import com.iu.s5.board.BoardVO;
-import com.iu.s5.board.page.Pager;
+import com.iu.util.Pager;
 
 
 @Repository
