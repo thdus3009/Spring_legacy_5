@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.iu.s5.board.BoardVO;
-import com.iu.s5.util.DBConnect;
 import com.iu.s5.util.Pager;
 
 @Repository
@@ -68,6 +67,10 @@ public class MemberDAO {
 		//String sql = "select * from member where id=? and pw=?";
 		
 		return sqlSession.selectOne(NAMESPACE+"memberLogin",memberVO);
+	}
+	
+	public MemberVO memberLogout(MemberVO memberVO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"memberLogout",memberVO);
 	}
 	
 	//MyPage

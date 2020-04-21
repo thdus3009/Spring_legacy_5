@@ -18,6 +18,13 @@ public class QnaDAO implements BoardDAO{
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.iu.s5.qna.QnaDAO.";
 	
+	public int boardReplyUpdate(BoardVO boardVO) throws Exception {
+		return sqlSession.update(NAMESPACE+"boardReplyUpdate", boardVO);
+	}
+	
+	public int boardReply(BoardVO boardVO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"boardReply", boardVO);
+	}
 	
 	@Override
 	public long boardCount(Pager pager) throws Exception {

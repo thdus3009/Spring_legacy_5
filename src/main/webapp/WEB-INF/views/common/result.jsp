@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	alert('${result}');
-	location.href="${path}";
+	location.href="${path}";//./
 </script>
 </head>
 

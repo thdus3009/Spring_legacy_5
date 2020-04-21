@@ -9,53 +9,38 @@
 	like '%'||#{search}||'%'
 </sql>
 
+<sql id="kind">
+		<choose>
+			<when test="kind=='mi'">
+				id
+			</when>
+			<when test="kind=='mn'">
+				name
+			</when>
+			<when test="kind=='me'">
+				email
+			</when>
+			<otherwise>
+				phone
+			</otherwise>
+		</choose>
+	</sql>
+
 <!-- 검색 -->
-<select id="memberCount" parameterType="Pager" resultType="MemberVO"><!-- 단축키(mybatisConfig): 마이바티스에경우에만 해당, java쪽은 상관 x -->
-		select count(rownum) from member
-		<where>
-			<if test="kind=='id'">
-				id <include refid="search"></include>
-			</if>
-			
-			<if test="kind=='name'">
-				name <include refid="search"></include>
-			</if>
-			
-			<if test="kind=='phone'">
-				phone <include refid="search"></include>
-			</if>
-			
-			<if test="kind=='email'">
-				email <include refid="search"></include>
-			</if>
-		</where>
-</select>
+	<select id="memberCount" parameterType="Pager" resultType="Long"><!-- 단축키(mybatisConfig): 마이바티스에경우에만 해당, java쪽은 상관 x -->
+			select count(id) from member where 
+			<include refid="kind"></include>
+			<include refid="search"></include>
+	</select>
 
 
 	<select id="memberList" parameterType="Pager" resultType="MemberVO">
-	select * from
-		(select N.*, rownum R from 
-			(select * from member where
-			<choose>
-				<when test="kind=='id'">
-					id
-				</when>
-				
-				<when test="kind=='name'">
-					name
-				</when>
-				
-				<when test="kind=='phone'">
-					phone
-				</when>
-				
-				<otherwise>
-					email
-				</otherwise>
-			</choose>
-			<include refid="search"></include> order by rownum desc) N)
-			where R between #{startRow} and #{lastRow}
-	
+		select * from
+		(select M.*, rownum R from
+		(select * from member where 
+		<include refid="kind"></include>
+		<include refid="search"></include>) M)
+		where R between #{startRow} and #{lastRow}
 	</select>
 
 	<select id="memberLogin" parameterType="MemberVO" resultType="MemberVO">

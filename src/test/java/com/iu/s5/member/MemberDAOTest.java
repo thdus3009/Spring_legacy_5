@@ -5,10 +5,11 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.iu.s5.AbstractTestCase;
 import com.iu.s5.notice.NoticeDAO;
 import com.iu.s5.notice.NoticeVO;
 
-public class MemberDAOTest {
+public class MemberDAOTest extends AbstractTestCase{
 
 	@Autowired  //생성자 역할
 	private MemberDAO memberDAO; 
@@ -51,6 +52,8 @@ public class MemberDAOTest {
 		memberVO.setId(id+i);
 		memberVO.setPw(pw+i);
 		memberVO.setName(name+i);
+		memberVO.setPhone(phone);
+		memberVO.setEmail(email);
 		
 		System.out.println(memberVO.getAge());
 		

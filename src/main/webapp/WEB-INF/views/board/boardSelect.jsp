@@ -19,8 +19,13 @@
 	</div>
 	
 	<div><br><br>
-		&nbsp; &nbsp;<button><a href="./noticeUpdate?num=${vo.num}">Update</a></button>
-		&nbsp; &nbsp;<button><a href="./noticeDelete?num=${vo.num}">Delete</a></button>
+		&nbsp; &nbsp;<button><a href="./${board}Update?num=${vo.num}">Update</a></button>
+		&nbsp; &nbsp;<button><a href="./${board}Delete?num=${vo.num}">Delete</a></button>
+		
+		<!-- notice일때는 reply가 보이면 안된다. -->
+		<c:if test="${board ne 'notice'}">
+		&nbsp; &nbsp;<button><a href="./${board}Reply?num=${vo.num}">Reply</a></button>
+		</c:if>
 	</div>
 </body>
 </html>

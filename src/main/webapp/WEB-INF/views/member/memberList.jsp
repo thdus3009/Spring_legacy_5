@@ -21,10 +21,10 @@
 		<form action="./memberList">
 		<div class="input-group">
 		<select class="form-control" id="sel1" name="kind">
-			<option value="id">Id</option>
-			<option value="name">Name</option>
-			<option value="phone">Phone</option>
-			<option value="email">Email</option>
+			<option value="mi">Id</option>
+			<option value="mn">Name</option>
+			<option value="mp">Phone</option>
+			<option value="me">Email</option>
 		</select>
 		<!-- placeholder : 박스내 입력전 설명글 -->
 		<input type="text" class="form-control" placeholder="Search" name="search">
@@ -47,7 +47,7 @@
 				<td>email</td>
 			
 			</tr>
-			<c:forEach items="${list}" var="vo">
+			<c:forEach items="${list}" var="vo"><!-- ${list} : Controller참고 -->
 			<tr>
 				<td>${vo.id}</td>
 				<td>${vo.name}</td>

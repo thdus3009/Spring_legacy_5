@@ -3,13 +3,17 @@ package com.iu.s5.member;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,8 +40,20 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value= "memberDelete")
-	public void memberDelete( HttpSession session) {
-		System.out.println("Member Delete");
+	public ModelAndView memberDelete( HttpSession session, ModelAndView mv) throws Exception {
+		MemberVO memberVO =(MemberVO)session.getAttribute("member");
+		int result = memberService.memberDelete(memberVO);
+		if(result>0) {
+			session.invalidate();
+			mv.addObject("result","Delete Success");
+			mv.addObject("path","../");
+			mv.setViewName("common/result");
+		}else {
+			mv.addObject("result", "Delete Fail");
+			mv.addObject("path", "../");
+			mv.setViewName("common/result");
+		}
+		return mv;
 	}
 	
 	@RequestMapping(value="memberJoin")
@@ -48,14 +64,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="memberJoin",  method= RequestMethod.POST )
-	public ModelAndView memberJoin2(MemberVO memberVO,ModelAndView mv)throws Exception {
+	public ModelAndView memberJoin2(MemberVO memberVO , String pic, ModelAndView mv)throws Exception {
+		System.out.println("picture: "+pic);
 		int result = memberService.memberJoin(memberVO);
 		
 		if(result>0) {
 			mv.setViewName("redirect:../");
-//			mv.addObject("result","Join Success");
-//			mv.addObject("path","redirect:../");
-//			mv.setViewName("common/result");
+			mv.addObject("result","Join Success");
+			mv.addObject("path","../");
+			mv.setViewName("common/result");
 		}else {
 			mv.addObject("result","Fail");
 			mv.addObject("path","memberJoin");
@@ -67,25 +84,47 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="memberLogin")
-	public void memberLogin() {
-		
+	public void memberLogin(@CookieValue(value = "cId", required =false) String cId , Model model) {
+		System.out.println(cId);
+		//model.addAttribute("cId",cId);
 	}
 	@RequestMapping(value="memberLogin", method=RequestMethod.POST)
-	public String memberLogin2(MemberVO memberVO, HttpSession session)throws Exception {
+	public ModelAndView memberLogin2(ModelAndView mv, MemberVO memberVO,String remember, HttpSession session, HttpServletResponse response)throws Exception {
+		//remember me를 누르고 sysout안에 remember를 받아오면 remember이 출력되고 안누르면 출력이 안된다.
+		Cookie cookie = new Cookie("cid", "");
+		
+		if(remember != null) {
+//			cookie = new Cookie("cid", memberVO.getId());
+			cookie.setValue(memberVO.getId());
+		}
+
+//		cookie.setMaxAge(30);//cookie가 계속 쌓이면 안되니까 일정시간이 지나면 사라지게 되어있다.//쿠키지우고 싶으면 0으로 하면됨
+//		cookie.setValue(newValue);
+		response.addCookie(cookie);
 		
 		memberVO = memberService.memberLogin(memberVO);
 		 
-		//로그인 성공이면 index페이지로 이동 
-		 //실패하면 로그인 실패 alert창에 띄우고 로그인 form 으로 이동
+		 if(memberVO != null) {
+			 session.setAttribute("member", memberVO);
+			 mv.setViewName("redirect:../");//ar,pager를 못받아 넘기기 때문에 재검색해준다.
+		 }else {
+			 mv.addObject("result", "Login Fail");
+			 mv.addObject("path", "./memberJoin");
+			 mv.setViewName("common/result");
+		 }
 		 
-		 return "redirect:../";
+		//로그인 성공이면 index
+		//로그인 실패 하면 로그인 실패 alert login form 이동		 
+				 
+				 
+		return mv;
 	}
 	
 	@RequestMapping(value="memberLogOut")
-	public void memberLogOut()throws Exception {
-		
-		
-	}
+	public String memberLogOut(HttpSession session)throws Exception {
+		session.invalidate();
+		return "redirect:../";	
+		}
 
 	
 	@RequestMapping(value="memberUpdate")
@@ -94,16 +133,34 @@ public class MemberController {
 		path="../WEB-INF/views/member/memberUpdate.jsp";
 	}
 	@RequestMapping(value="memberUpdate",  method=RequestMethod.POST)
-	public void memberUpdate2( HttpSession session) {
-		System.out.println("Member Update Post");
+	public ModelAndView memberUpdate2( HttpSession session, MemberVO memberVO, ModelAndView mv)throws Exception{
+		String id = ((MemberVO)session.getAttribute("member")).getId(); //현재 로그인하고 있는 아이디의 수정이기때문에 session을 쓴다.
+		memberVO.setId(id);
 		
-		
+		int result = memberService.memberUpdate(memberVO);
+	//변형되면 1, 변형되지않으면 0
+		if(result>0) {
+			session.setAttribute("member", memberVO);//MemberUpdate.jsp에서 ${member}이렇게 쓰인다.
+			mv.addObject("result","Update Success");
+			mv.addObject("path", "./memberMyPage"); //성공했으면 변경된 값을 재확인 하기 위해 redirect한다. 
+			mv.setViewName("common/result");
+		}else {
+			mv.addObject("result","Update Fail");
+			mv.addObject("path","./memberPage"); //실패했으니 다시 수정하기위해 현재페이지그대로 둔다. (redirect x)
+			mv.setViewName("common/result");
+		}
+		return mv;
 	}
 	
-	@RequestMapping(value = "memberList", method = RequestMethod.GET)
-	public void memberList()throws Exception{
+	@GetMapping("memberList")
+	public ModelAndView memberList(Pager pager, ModelAndView mv)throws Exception{
 		
-		
+		 List<MemberVO> ar = memberService.memberList(pager);
+		 System.out.println("totalpage: "+pager.getTotalPage());
+		 mv.addObject("list", ar);
+		 mv.addObject("pager", pager);
+		 mv.setViewName("member/memberList");
+		 return mv;
 	}
 	
 

@@ -52,7 +52,14 @@
 			<c:forEach items="${list}" var="vo">
 			<tr>
 				<td>${vo.num}</td>
-				<td><a href="./notice/noticeSelect?num=${vo.num}">${vo.title}</a></td>
+				<td><!-- title 들여쓰기 / for(int i=0;i<=?;i++)-->
+				
+				<c:catch> <!-- try catch 역할 -->
+					<c:forEach begin="1" end="${vo.depth}">
+						&nbsp;--&nbsp;
+					</c:forEach>
+				</c:catch>
+				<a href="./${board}/${board}Select?num=${vo.num}">${vo.title}</a></td>
 				<td>${vo.writer}</td>
 				<td>${vo.regDate}</td>
 				<td>${vo.hit}</td>
@@ -85,10 +92,33 @@
 		</div>
 		
 		
-		
+		<!-- admin만 write할 수 있게.. -->
 		 <br><br>
+		 <!-- qna는 회원들만 글쓰기가능 / 로그인했는지 안했는지 확인 필요-->
+		 
+		 <c:catch><!-- nullpointexception 발생할 경우를 대비하여 catch문 사용 -->
+		 <c:choose>
+		 	
+		 	<c:when test="${board eq 'notice'}"><!-- notice -->
+		 		<c:if test="${member.id eq 'admin'}">
+		 			<div>
+		 				<a href="./${board}Write" class="btn btn-danger">WRITE</a>
+		 			</div>
+		 		</c:if>
+		 	</c:when>
+		 	
+		 	<c:otherwise>
+		 		<c:if test="${not empty member}"><!-- qna -->
+		 			<div>
+		 				<a href="./${board}Write" class="btn btn-danger">WRITE</a>
+		 			</div>
+		 		</c:if>
+		 	</c:otherwise>
+		
+		 </c:choose>
+		 </c:catch>
 		<div>
-			<a href="./noticeWrite" class="btn btn-danger">WRITE</a>
+			
 		</div>
 		
 	</div>
