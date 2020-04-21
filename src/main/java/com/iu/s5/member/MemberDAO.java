@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.iu.s5.board.BoardVO;
-import com.iu.util.DBConnect;
-import com.iu.util.Pager;
+import com.iu.s5.util.DBConnect;
+import com.iu.s5.util.Pager;
 
 @Repository
 public class MemberDAO {

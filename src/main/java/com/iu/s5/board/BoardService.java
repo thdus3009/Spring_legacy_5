@@ -2,7 +2,7 @@ package com.iu.s5.board;
 
 import java.util.List;
 
-import com.iu.util.Pager;
+import com.iu.s5.util.Pager;
 
 public interface BoardService {
 	

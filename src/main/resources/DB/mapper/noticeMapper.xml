@@ -14,7 +14,7 @@
 	</sql>
 	
 	<!-- 전체글의 갯수 -->
-	<select id="boardCount" parameterType="com.iu.s5.util.Pager" resultType="java.lang.Long">
+	<select id="boardCount" parameterType="Pager" resultType="Long"><!-- mybatisConfig 참고 / 단축키 만들어 놓음 -->
 	<!-- select문은 resultType 필요함 / 결과값이 정수라서 integer또는 long타입-->
 		select count(num) from notice2
 		<where><!--(단일if문) / 긴 쿼리문 동일하게 들어가는경우 변수에 넣어놓고 쓸수 있다. -->
@@ -33,8 +33,8 @@
 		
 	</select>
 	
-	
-	<select id="boardList" parameterType="com.iu.s5.util.Pager" resultType="com.iu.s5.notice.NoticeVO">
+	<!-- parameterType : 사용할 데이터 타입 / resultType : return할 데이터 타입 -->
+	<select id="boardList" parameterType="Pager" resultType="NoticeVO">
 		select * from
 			(select N.*, rownum R from				
 				(select * from notice2 where 
@@ -59,20 +59,20 @@
 	
 	
 	
-	<select id="boardSelect" parameterType="java.lang.Long" resultType="com.iu.s5.notice.NoticeVO">
+	<select id="boardSelect" parameterType="Long" resultType="NoticeVO">
 		select * from notice2 where num=#{num}
 	</select>
 	
 	
-	<insert id="boardWrite" parameterType="com.iu.s5.notice.NoticeVO">
+	<insert id="boardWrite" parameterType="NoticeVO">
 		insert into notice2 values(board_seq.nextval,#{title},#{writer},#{contents},sysdate,0)
 	</insert>
 	
-	<delete id="boardDelete" parameterType="java.lang.Long">
+	<delete id="boardDelete" parameterType="Long">
 		delete notice2 where num=#{num}
 	</delete>
 	
-	<update id="boardUpdate" parameterType="com.iu.s5.notice.NoticeVO">
+	<update id="boardUpdate" parameterType="NoticeVO">
 		update notice2 set title=#{title} , contents=#{contents} where num=#{num}
 	</update>
 
@@ -81,7 +81,7 @@
 		 select > NoticeVO --> 
 	<!-- 파라미터, 데이터변수명, db컬럼명 일치시키기 -->
 	
-	<update id="hitUpdate" parameterType="java.lang.Long">
+	<update id="hitUpdate" parameterType="Long">
 		update  notice2 set hit=hit+1 where num=#{num}
 	</update>
 	

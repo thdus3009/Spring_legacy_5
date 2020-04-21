@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mybatis의 getting started _ mybatis의 형식에 맞는 수식을 써야 한다. -->
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <!-- root-context에 mybatisConfig 위치를 알려주어야 한다. -->
+  
+  <configuration>
+  	<typeAliases>
+  		<typeAlias type="java.lang.Long" alias="Long"/>
+  		<typeAlias type="com.iu.s5.notice.NoticeVO" alias="NoticeVO"/>
+  		<typeAlias type="com.iu.s5.member.MemberVO" alias="MemberVO"/>
+  		<typeAlias type="com.iu.s5.qna.QnaVO" alias="QnaVO"/>
+  		<typeAlias type="com.iu.s5.util.Pager" alias="Pager"/>
+  		
+  	</typeAliases>
+  </configuration>

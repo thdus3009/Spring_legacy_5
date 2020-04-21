@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.iu.s5.board.BoardVO;
 import com.iu.s5.notice.NoticeService;
 import com.iu.s5.notice.NoticeVO;
-import com.iu.util.Pager;
+import com.iu.s5.util.Pager;
 
 @Controller
 @RequestMapping("/qna/**")

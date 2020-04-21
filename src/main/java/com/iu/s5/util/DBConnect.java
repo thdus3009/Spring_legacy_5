@@ -1,4 +1,4 @@
-package com.iu.util;
+package com.iu.s5.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
