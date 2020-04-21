@@ -105,7 +105,7 @@ public class Pager {
 	}
 
 	public String getSearch() {
-		if(this.search==null) {
+		if(this.search==null) { //nullexception 막아주기
 			this.search="";
 		}
 		return search;

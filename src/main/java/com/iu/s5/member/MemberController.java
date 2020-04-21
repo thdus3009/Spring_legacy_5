@@ -152,11 +152,12 @@ public class MemberController {
 		return mv;
 	}
 	
+	
 	@GetMapping("memberList")
 	public ModelAndView memberList(Pager pager, ModelAndView mv)throws Exception{
 		
 		 List<MemberVO> ar = memberService.memberList(pager);
-		 System.out.println("totalpage: "+pager.getTotalPage());
+		 
 		 mv.addObject("list", ar);
 		 mv.addObject("pager", pager);
 		 mv.setViewName("member/memberList");
