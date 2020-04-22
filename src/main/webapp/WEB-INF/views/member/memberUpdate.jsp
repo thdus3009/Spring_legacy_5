@@ -25,6 +25,8 @@
 			<h1>Member Join</h1>
 			<form action="./memberUpdate" method="post">
 			
+			
+
 	<div class="form-group">
       <label for="Id">ID:</label>
       <input type="text" class="form-control" id="id" placeholder="Enter Id" name="id" value="${member.id}" readonly="readonly">
