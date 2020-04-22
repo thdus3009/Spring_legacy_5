@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.s5.board.BoardVO;
@@ -63,10 +64,18 @@ public class MemberController {
 		//이게 제대로 작동이 안될경우 직접 key, value를 써야한다.
 	}
 	
-	@RequestMapping(value="memberJoin",  method= RequestMethod.POST )
-	public ModelAndView memberJoin2(MemberVO memberVO , String pic, ModelAndView mv)throws Exception {
-		System.out.println("picture: "+pic);
-		int result = memberService.memberJoin(memberVO);
+	@RequestMapping(value="memberJoin",  method= RequestMethod.POST ) //file > multipartfile로 만든다.(파라미터명과 동일하게)
+	public ModelAndView memberJoin2(MemberVO memberVO , MultipartFile pic , ModelAndView mv, HttpSession session)throws Exception {
+		
+		System.out.println("파일업로드 시 실제 이름 : " +pic.getOriginalFilename()); //filename이 찍힌다 (nn.jpg > 이런식으로)
+		System.out.println("파일의 파라미터이름 : "+pic.getName());
+		System.out.println("파일 용량 (단위 byte) : "+pic.getSize()); //파일용량 > root-context에서 조정가능
+		System.out.println("파일 형식 : "+pic.getContentType()); //image인데 확장자가 jpg이다, text인데 html이다... 등의 정보를 알려줌
+
+		//파일을 서버내에 영구히 저장해야함 > 파일은 number,varchar2,date 타입이아니다.
+		//BLOB(최대 2기가) > DB에서 이진데이터의 바이트를 저장하는것
+		
+		int result = memberService.memberJoin(memberVO, pic, session);
 		
 		if(result>0) {
 			mv.setViewName("redirect:../");
@@ -74,7 +83,7 @@ public class MemberController {
 			mv.addObject("path","../");
 			mv.setViewName("common/result");
 		}else {
-			mv.addObject("result","Fail");
+			mv.addObject("result","Join Fail");
 			mv.addObject("path","memberJoin");
 			mv.setViewName("common/result");
 		}

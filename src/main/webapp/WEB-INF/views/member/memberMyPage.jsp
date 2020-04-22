@@ -22,13 +22,15 @@
 			<td>나이</td>
 			<td>핸드폰 번호</td>
 			<td>이메일</td>
+			<td>이미지</td>
 		</tr>
 		<tr>	
 			<td>${member.id}</td>
 			<td>${member.name}</td>
 			<td>${member.age}</td>
 			<td>${member.phone}</td>
-			<td>${member.email}</td>			
+			<td>${member.email}</td>
+			<td></td>			
 		</tr>
 		</table>
 	<br>	

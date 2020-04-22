@@ -25,6 +25,13 @@
 			<h1>Member Join</h1>
 			<form action="./memberJoin" method="post" enctype="multipart/form-data"><!-- file업로드 안하려면 enctype="multipart/form-data" 쓰면 안된다. -->
 			
+			
+			
+	 <div class="form-group">
+      <label for="pic">Picture:</label>
+      <input type="file" class="form-control" id="pic" placeholder="Enter Picture" name="pic">
+    </div> 		
+			
 	<div class="form-group">
       <label for="id">ID:</label>
       <input type="text" class="form-control" id="id" value="${id}" placeholder="Enter Id" name="id">
@@ -55,10 +62,7 @@
       <input type="text" class="form-control" id="email" placeholder="Enter Email" name="email">
     </div>  
       
-      <div class="form-group">
-      <label for="pic">Picture:</label>
-      <input type="file" class="form-control" id="pic" placeholder="Enter Picture" name="pic">
-    </div> 
+
       
     <button type="submit" class="btn btn-default">Add</button><br><br>
     
