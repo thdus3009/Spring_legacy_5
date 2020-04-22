@@ -11,6 +11,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Component //service, controller, repository가 아닌 나머지 : component
 public class FileSaver {
+	
+	//1.폴더 생성
+	//2.저장할 파일명 생성
+	//3.파일 HDD 저장
+	
+	
 	//join에 넣은 파일을 C:\java\sts-bundle\pivotal-tc-server\instances\base-instance\wtpwebapps\Spring_legacy_5\resources\memberUpload에 올리기
 
 	//1. FileCopyUtils 클래스 사용

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iu.s5.member.memberFile.MemberFileDAO;
+import com.iu.s5.member.memberFile.MemberFileVO;
 import com.iu.s5.util.FileSaver;
 import com.iu.s5.util.Pager;
 
@@ -17,6 +19,9 @@ public class MemberService {
 	private MemberDAO memberDAO;
 	@Autowired
 	private FileSaver fileSaver;
+	@Autowired
+	private MemberFileDAO memberFileDAO;
+	
 	//dispacher servlet에서 값을 보내준다.?
 	
 	/*
@@ -43,14 +48,23 @@ public class MemberService {
 	
 	public int memberJoin(MemberVO memberVO, MultipartFile pic, HttpSession session) throws Exception{
 		//HDD에 저장 > resources/memberUpload/
-		//1.실제 경로 가져오기
+		//1.파일을 HDD(하드디스크)에 저장(실제 경로 가져오기)
 		String path = session.getServletContext().getRealPath("/resources/memberUpload");
 		System.out.println(path);
 		
 		//util/FileSaver에 일 보내기
-		fileSaver.saveByTransfer(pic, path);
+		String fileName = fileSaver.saveByUtils(pic, path);
 		
-		return 0; //memberDAO.memberJoin(memberVO);
+		//2.파일명을 DB에 저장 (연습을 위해 2개 방법만들어봄)
+		MemberFileVO memberFileVO = new MemberFileVO();
+		memberFileVO.setId(memberVO.getId());
+		memberFileVO.setFileName(fileName);
+		memberFileVO.setOriName(pic.getOriginalFilename());
+		
+		int result = memberDAO.memberJoin(memberVO);
+		result = memberFileDAO.fileInsert(memberFileVO);
+		
+		return result; //memberDAO.memberJoin(memberVO);
 	}
 	
 	public MemberVO memberLogin(MemberVO memberVO) throws Exception{
@@ -68,4 +82,7 @@ public class MemberService {
 		return memberDAO.memberList(pager);
 	}
 	
+	public MemberFileVO fileSelect(String id)throws Exception{
+		return memberFileDAO.fileSelect(id);
+	}
 }

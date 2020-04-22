@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.s5.board.BoardVO;
+import com.iu.s5.member.memberFile.MemberFileVO;
 import com.iu.s5.util.Pager;
 
 @Controller //new memberController(객체생성)
@@ -35,8 +36,10 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="memberMyPage")
-	public void memberMyPage() {
-		
+	public void memberMyPage(HttpSession session, Model model)throws Exception {
+		MemberVO memberVO = (MemberVO) session.getAttribute("member"); // object타입을 MemberVO로 형변환
+		MemberFileVO memberFileVO =  memberService.fileSelect(memberVO.getId());
+		model.addAttribute("file", memberFileVO);
 		
 	}
 	
@@ -78,7 +81,6 @@ public class MemberController {
 		int result = memberService.memberJoin(memberVO, pic, session);
 		
 		if(result>0) {
-			mv.setViewName("redirect:../");
 			mv.addObject("result","Join Success");
 			mv.addObject("path","../");
 			mv.setViewName("common/result");

@@ -15,24 +15,18 @@
 	<div class="row">
 	<h1>My Page</h1>
 		<!-- Session에서 정보꺼내기 / EL사용 -->
-		<table class="table table-hover">
-		<tr>
-			<td>ID</td>
-			<td>이름</td>
-			<td>나이</td>
-			<td>핸드폰 번호</td>
-			<td>이메일</td>
-			<td>이미지</td>
-		</tr>
-		<tr>	
-			<td>${member.id}</td>
-			<td>${member.name}</td>
-			<td>${member.age}</td>
-			<td>${member.phone}</td>
-			<td>${member.email}</td>
-			<td></td>			
-		</tr>
-		</table>
+				<h1>Id : ${sessionScope.member.id}</h1>
+		<h1>Name : ${member.name}</h1>
+		<h1>Email : ${member.email}</h1>
+		<h1>Phone : ${member.phone}</h1>
+		<h1>Age : ${member.age}</h1>
+		
+		<h1>
+		<div><a href="./fileDelete">FileDelete</a> </div>
+		<img alt="" src="../resources/memberUpload/${file.fileName}"> 
+		</h1>
+
+		
 	<br>	
 	<button href="" class="btn btn-primary" id="d2" >Update</button>
 	<button type="submit" class="btn btn-danger" id="d1">Delete</button> <!-- 탈퇴버튼(한번더 확인해주어야함) -->
@@ -40,7 +34,7 @@
 	</div>
 	</div>
 
-<<script type="text/javascript">
+<script type="text/javascript">
 	//js document.getElementById
 	//js document.querySelector
 	//jquery $(선택자)
