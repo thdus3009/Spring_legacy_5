@@ -15,7 +15,7 @@
   	</insert>
   
   	<delete id="fileDelete" parameterType="MemberFileVO">
-		delete memberfile where id=#{id}
+		DELETE MEMBERFILE WHERE ID=#{id} <!-- MemberFileVO참고! -->
 	</delete>
 	
 	<update id="fileUpdate" parameterType="MemberFileVO">

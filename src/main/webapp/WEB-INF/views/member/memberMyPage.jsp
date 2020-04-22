@@ -13,24 +13,26 @@
 
 	<div class="container">
 	<div class="row">
-	<h1>My Page</h1>
+	<h1>"My Page"</h1>
 		<!-- Session에서 정보꺼내기 / EL사용 -->
-				<h1>Id : ${sessionScope.member.id}</h1>
-		<h1>Name : ${member.name}</h1>
-		<h1>Email : ${member.email}</h1>
-		<h1>Phone : ${member.phone}</h1>
-		<h1>Age : ${member.age}</h1>
+		<h3>Id : ${sessionScope.member.id}</h3>
+		<h3>Name : ${member.name}</h3>
+		<h3>Email : ${member.email}</h3>
+		<h3>Phone : ${member.phone}</h3>
+		<h3>Age : ${member.age}</h3>
 		
-		<h1>
-		<div><a href="./fileDelete">FileDelete</a> </div>
-		<img alt="" src="../resources/memberUpload/${file.fileName}"> 
-		</h1>
+		<br>
+		<h4>
+			<div><a href="./fileDelete">FileDelete</a> </div>
+			<br>
+			<img alt="" src="../resources/memberUpload/${file.fileName}" width="350px"> 
+		</h4>
 
 		
 	<br>	
 	<button href="" class="btn btn-primary" id="d2" >Update</button>
 	<button type="submit" class="btn btn-danger" id="d1">Delete</button> <!-- 탈퇴버튼(한번더 확인해주어야함) -->
-		
+	<br><br>
 	</div>
 	</div>
 

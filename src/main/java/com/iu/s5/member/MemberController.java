@@ -35,6 +35,13 @@ public class MemberController {
 	private MemberService memberService;
 	
 	
+	@GetMapping("fileDelete")
+	public String fileDelete(HttpSession session) throws Exception{
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		memberService.fileDelete(memberVO.getId(),session);
+		return "redirect:./memberMyPage";
+	}
+	
 	@RequestMapping(value="memberMyPage")
 	public void memberMyPage(HttpSession session, Model model)throws Exception {
 		MemberVO memberVO = (MemberVO) session.getAttribute("member"); // object타입을 MemberVO로 형변환

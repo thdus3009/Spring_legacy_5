@@ -92,4 +92,17 @@ public class FileSaver {
 		return result;
 	}
 	
+	//file Delete . 경로명,파일명
+	public int deleteFile(String fileName, String path) throws Exception{
+		File file = new File(path, fileName);
+		boolean check = false;
+		int result=0;
+		if(file.exists()) {
+			check = file.delete();
+		}
+		if(check) {
+			result=1;
+		}
+		return result;
+	}
 }
