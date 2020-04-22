@@ -25,7 +25,7 @@
 		<h4>
 			<div><a href="./fileDelete">FileDelete</a> </div>
 			<br>
-			<img alt="" src="../resources/memberUpload/${file.fileName}" width="350px"> 
+			<img alt="" src="../resources/memberUpload/${member.memberFileVO.fileName}" width="350px"> 
 		</h4>
 
 		

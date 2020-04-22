@@ -25,7 +25,11 @@
 			<h1>Member Join</h1>
 			<form action="./memberUpdate" method="post">
 			
-			
+	<div class="form-group">
+      <label for="pic">Image:</label>
+      <input type="file" class="form-control" id="pic" placeholder="Enter Picture" name="pic" value="${member.id}">
+    </div>
+					
 
 	<div class="form-group">
       <label for="Id">ID:</label>

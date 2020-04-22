@@ -121,7 +121,7 @@ public class MemberController {
 		response.addCookie(cookie);
 		
 		memberVO = memberService.memberLogin(memberVO);
-		 
+		 System.out.println(memberVO);
 		 if(memberVO != null) {
 			 session.setAttribute("member", memberVO);
 			 mv.setViewName("redirect:../");//ar,pager를 못받아 넘기기 때문에 재검색해준다.
