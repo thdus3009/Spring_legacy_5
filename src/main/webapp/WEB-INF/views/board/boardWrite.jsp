@@ -49,9 +49,11 @@
 	
 <script type="text/javascript">
 	//$("선택자").action();
-	$("#contents").summernote({
-		height : 400
-		
+
+	$(document).ready(function() {
+		$('#contents").summernote({
+			height : 400
+		});
 	});
 </script>	
 
