@@ -43,10 +43,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="memberMyPage")
-	public void memberMyPage(HttpSession session, Model model)throws Exception {
-		MemberVO memberVO = (MemberVO) session.getAttribute("member"); // object타입을 MemberVO로 형변환
-		MemberFileVO memberFileVO =  memberService.fileSelect(memberVO.getId());
-		model.addAttribute("file", memberFileVO);
+	public void memberMyPage()throws Exception {
+		
 		
 	}
 	

@@ -93,7 +93,4 @@ public class MemberService {
 		return memberDAO.memberList(pager);
 	}
 	
-	public MemberFileVO fileSelect(String id)throws Exception{
-		return memberFileDAO.fileSelect(id);
-	}
 }
