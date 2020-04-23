@@ -17,9 +17,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="${pageContext.request.contextPath}">Home</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-
-      </li>
+ 
       <li><a href="${pageContext.request.contextPath}/notice/noticeList">Notice</a></li>
       <li><a href="${pageContext.request.contextPath}/qna/qnaList">QnA</a></li>
       <li><a href="${pageContext.request.contextPath}/member/memberList">Member List</a></li>
