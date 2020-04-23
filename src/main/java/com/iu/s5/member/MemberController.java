@@ -48,6 +48,17 @@ public class MemberController {
 		
 	}
 	
+	@GetMapping("memberList")
+	public ModelAndView memberList(Pager pager, ModelAndView mv)throws Exception{
+		
+		 List<MemberVO> ar = memberService.memberList(pager);
+		 
+		 mv.addObject("list", ar);
+		 mv.addObject("pager", pager);
+		 mv.setViewName("member/memberList");
+		 return mv;
+	}
+	
 	@RequestMapping(value= "memberDelete")
 	public ModelAndView memberDelete( HttpSession session, ModelAndView mv) throws Exception {
 		MemberVO memberVO =(MemberVO)session.getAttribute("member");
@@ -168,19 +179,6 @@ public class MemberController {
 		return mv;
 	}
 	
-	
-	@GetMapping("memberList")
-	public ModelAndView memberList(Pager pager, ModelAndView mv)throws Exception{
-		
-		 List<MemberVO> ar = memberService.memberList(pager);
-		 
-		 mv.addObject("list", ar);
-		 mv.addObject("pager", pager);
-		 mv.setViewName("member/memberList");
-		 return mv;
-	}
-	
-
 	
 	
 	
