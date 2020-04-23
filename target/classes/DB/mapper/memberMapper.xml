@@ -52,7 +52,12 @@
 
 <!-- MemberVO를 쓰려고 하니까 filename,oriname이 안들어있음 / MemberVO와 MemberFileVO를 연계시키기 - 상속? -->
 	<select id="memberList" parameterType="Pager" resultType="MemberVO">
-		select id as Mid, pw as mWd, name as mName from member where id=#{id}
+		select * from
+		(select M.*, rownum R from
+		(select * from member where 
+		<include refid="kind"></include>
+		<include refid="search"></include>) M)
+		where R between #{startRow} and #{lastRow}
 	</select>
 
 	<select id="memberLogin" parameterType="MemberVO" resultMap="loginResult">

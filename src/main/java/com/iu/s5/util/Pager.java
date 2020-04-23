@@ -88,6 +88,8 @@ public class Pager {
 	}
 
 
+
+
 	public long getLastRow() {
 		return lastRow;
 	}
@@ -95,7 +97,25 @@ public class Pager {
 
 
 
-	
+	public Long getCurPage() {
+		if(this.curPage == null || this.curPage==0) {
+			this.curPage=1L;	
+		}
+		return curPage;
+	}
+	public void setCurPage(Long curPage) {
+		this.curPage = curPage;
+	}
+	public Integer getPerPage() {
+		if(this.perPage == null || this.perPage==0) {
+			this.perPage=10;
+		}
+		return perPage;
+	}
+	public void setPerPage(Integer perPage) {
+		this.perPage = perPage;
+	}
+
 	public String getKind() {
 		return kind;
 	}
@@ -105,7 +125,7 @@ public class Pager {
 	}
 
 	public String getSearch() {
-		if(this.search==null) { //nullexception 막아주기
+		if(this.search==null) {
 			this.search="";
 		}
 		return search;
@@ -114,31 +134,7 @@ public class Pager {
 	public void setSearch(String search) {
 		this.search = search;
 	}
-
 	
-	
-	
-	
-	public Long getCurPage() {
-		if(this.curPage == null || this.curPage ==0) {
-			this.curPage=1L; //long타입이라서
-		}
-		return curPage;
-	}
-	public void setCurPage(Long curPage) {
-		this.curPage = curPage;
-	}
-	
-	public Integer getPerPage() {
-		if(this.perPage == null || this.perPage == 0) {
-			this.perPage=10;
-		}
-		return perPage;
-	}
-	
-	public void setPerPage(Integer perPage) {
-		this.perPage = perPage;
-	}
 	
 	
 }

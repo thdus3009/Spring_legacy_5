@@ -71,8 +71,8 @@
 			<li><a href="./memberList?curPage=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
 		</c:forEach>
 		
-		<c:if test="${pager.curBlock lt pager.totalPage}">
-			<li><a href="./memberlist?curPage=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">다음</a></li>
+		<c:if test="${pager.curBlock lt pager.totalBlock}">
+			<li><a href="./memberList?curPage=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">다음</a></li>
 		</c:if>
 		</ul>
 		

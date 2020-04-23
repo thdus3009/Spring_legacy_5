@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
   <c:import url="../template/boot.jsp"></c:import>
+  <c:import url="../template/summer.jsp"></c:import>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
@@ -45,5 +46,14 @@
 		
 	</div>
 	</div>
+	
+<script type="text/javascript">
+	//$("선택자").action();
+	$("#contents").summernote({
+		height : 400
+		
+	});
+</script>	
+
 </body>
 </html>

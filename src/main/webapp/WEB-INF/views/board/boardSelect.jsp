@@ -12,10 +12,25 @@
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
-	 	<div class="row">
-		<h1>&nbsp; &nbsp;Title : ${vo.title}</h1>
-		<h1>&nbsp; &nbsp;Writer : ${vo.writer}</h1>
-		<h1>&nbsp; &nbsp;Contents : ${vo.contents}</h1>
+	 	
+	 	<div class="container">
+	 	<h2>Select Page</h2>
+	 	  <div class="panel-group">
+	 	  
+		<div class="panel panel-info">
+	      <div class="panel-heading">Title</div>
+	      <div class="panel-body">${vo.title}</div>
+	    </div>
+	    <div class="panel panel-info">
+	      <div class="panel-heading">Writer</div>
+	      <div class="panel-body">${vo.writer}</div>
+	    </div>
+	    <div class="panel panel-info">
+	      <div class="panel-heading">Contents</div>
+	      <div class="panel-body">${vo.contents}</div>
+	    </div>
+	    
+		</div>
 	</div>
 	
 	
@@ -27,7 +42,7 @@
 		</c:forEach>
 	</div>
 	
-	<div><br><br>
+	<div class="container"><br><br>
 		&nbsp; &nbsp;<button><a href="./${board}Update?num=${vo.num}">Update</a></button>
 		&nbsp; &nbsp;<button><a href="./${board}Delete?num=${vo.num}">Delete</a></button>
 		
