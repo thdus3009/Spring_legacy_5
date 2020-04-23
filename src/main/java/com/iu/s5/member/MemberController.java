@@ -49,7 +49,7 @@ public class MemberController {
 	}
 	
 	@GetMapping("memberList")
-	public ModelAndView memberList(Pager pager, ModelAndView mv)throws Exception{
+	public ModelAndView memberList(Pager pager, ModelAndView mv)throws Exception{//service로 보낼데이터 :Pager //view(.jsp)로 보낼데이터 :ModelAndView
 		
 		 List<MemberVO> ar = memberService.memberList(pager);
 		 

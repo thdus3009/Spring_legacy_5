@@ -48,6 +48,7 @@
 				<td>email</td>
 			
 			</tr>
+			
 			<c:forEach items="${list}" var="vo"><!-- ${list} : Controller참고 -->
 			<tr>
 				<td>${vo.id}</td>
