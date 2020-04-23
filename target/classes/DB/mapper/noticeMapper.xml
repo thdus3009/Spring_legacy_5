@@ -64,8 +64,12 @@
 	</select>
 	
 	
+	<select id="boardNum" resultType="Long"><!-- config에 경로설정해서 Long만 써도 가능! -->
+		select board_seq.nextval from dual <!-- dual : 가상의 테이블 / 시퀀스를 하나 반환받고 insert하기-->
+	</select>
+	
 	<insert id="boardWrite" parameterType="NoticeVO">
-		insert into notice2 values(board_seq.nextval,#{title},#{writer},#{contents},sysdate,0)
+		insert into notice2 values(#{num},#{title},#{writer},#{contents},sysdate,0)
 	</insert>
 	
 	<delete id="boardDelete" parameterType="Long">

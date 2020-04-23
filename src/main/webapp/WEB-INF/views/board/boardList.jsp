@@ -96,6 +96,11 @@
 		 <br><br>
 		 <!-- qna는 회원들만 글쓰기가능 / 로그인했는지 안했는지 확인 필요-->
 		 
+		 
+		 
+		 <a href="./${board}Write" class="btn btn-danger">WRITE</a>
+		 
+		 
 		 <c:catch><!-- nullpointexception 발생할 경우를 대비하여 catch문 사용 -->
 		 <c:choose>
 		 	

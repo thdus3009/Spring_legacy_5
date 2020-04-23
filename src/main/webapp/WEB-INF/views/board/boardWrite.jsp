@@ -15,7 +15,7 @@
 <div class="container">
 	<div class="row">
 	<h1>${board} Write</h1>
-		<form action="./${board}Write" id="frm" method="post">
+		<form action="./${board}Write" id="frm" method="post" enctype="multipart/form-data">
 		
 		<div class="form-group">
       <label for="title">TITLE:</label>
@@ -31,6 +31,14 @@
       <label for="title">CONTENTS:</label>
       <textarea rows="5" cols="" class="form-control" id="contents" name="contents"></textarea>
     	</div>
+    	
+    	
+    	<div class="form-group">
+      <label for="files">File:</label>
+      <input type="file" class="form-control" name="files">
+      <input type="file" class="form-control" name="files">
+    	</div>
+    	
 		
 		<button type="submit" class="btn btn-default">write</button>
 		</form>

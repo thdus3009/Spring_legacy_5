@@ -1,0 +1,21 @@
+package com.iu.s5.board.file;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.iu.s5.member.MemberVO;
+
+	@Repository
+	public class BoardFileDAO {
+	
+		@Autowired
+		private SqlSession sqlSession;
+		private final String NAMESPACE="com.iu.s5.board.file.BoardFileDAO.";
+		
+		//method명은 id와 동일하게
+		public int fileInsert(BoardFileVO boardFileVO) throws Exception{
+			
+		return sqlSession.insert((NAMESPACE+"fileInsert"),boardFileVO);
+	}
+}

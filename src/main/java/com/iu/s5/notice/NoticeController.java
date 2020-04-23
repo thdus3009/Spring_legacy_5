@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.s5.board.BoardVO;
@@ -61,9 +62,10 @@ public class NoticeController {
 		return "board/boardWrite";
 	}
 	
-	@RequestMapping(value="noticeWrite", method = RequestMethod.POST)
-	public ModelAndView boardWrite(NoticeVO noticeVO, ModelAndView mv) throws Exception{
-		int result =noticeService.boardWrite(noticeVO);
+	@RequestMapping(value="noticeWrite", method = RequestMethod.POST)//boardWrite에 썼던 name의 이름과 같은 변수명을 써야함(현재 파일넣는게 2개니까 배열 [])
+	public ModelAndView boardWrite(NoticeVO noticeVO , MultipartFile [] files , ModelAndView mv) throws Exception{		
+		
+		int result =noticeService.boardWrite(noticeVO, files);
 		
 		if(result>0) {
 			//성공하면 redirect 실패하면 forward

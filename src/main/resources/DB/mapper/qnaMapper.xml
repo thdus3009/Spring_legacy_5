@@ -68,7 +68,11 @@
 	
 	
 	<insert id="boardWrite" parameterType="QnaVO"><!-- sequence의 현재번호를 가져오는것 : currval / 이건 nextval이 한번 호출되어야 사용할 수 있음-->
-		insert into qna values(board_seq.nextval,#{title},#{writer},#{contents},sysdate,0,board_seq.currval,0,0)
+		<selectKey keyProperty="num" order="BEFORE" resultType="Long"><!-- QnaVO.setnum -->
+			select board_seq.nextval from dual
+		</selectKey><!-- sequence번호 미리받아오기 -->
+		<!-- QnaVO.getnum -->
+		insert into qna values(#{num},#{title},#{writer},#{contents},sysdate,0,#{num},0,0)
 	</insert>
 	
 	<delete id="boardDelete" parameterType="Long">

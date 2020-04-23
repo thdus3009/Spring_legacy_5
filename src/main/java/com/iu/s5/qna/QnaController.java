@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.s5.board.BoardVO;
@@ -82,15 +83,14 @@ public class QnaController {
 	
 	//insert(원본글 작성 / 아직 답글x)
 	@GetMapping("qnaWrite")
-	public ModelAndView boardWrite(ModelAndView mv) throws Exception {
-		mv.setViewName("board/boardWrite");
-		return mv;
+	public String boardWrite() throws Exception {
+		return "board/boardWrite";
 	}
 	
 	@PostMapping("qnaWrite")
-	public ModelAndView boardWrite(QnaVO qnaVO, ModelAndView mv) throws Exception{
-		//insert라서 int이다.
-		int result =qnaService.boardWrite(qnaVO);
+	public ModelAndView boardWrite(QnaVO qnaVO, MultipartFile [] files, ModelAndView mv) throws Exception{
+		
+		int result =qnaService.boardWrite(qnaVO, files);
 		String msg = "Qna Write Fail";
 		
 		if(result>0) {
