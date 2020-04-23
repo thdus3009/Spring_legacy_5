@@ -13,9 +13,14 @@ import com.iu.s5.member.MemberVO;
 		private SqlSession sqlSession;
 		private final String NAMESPACE="com.iu.s5.board.file.BoardFileDAO.";
 		
-		//method명은 id와 동일하게
+		//Select
+		public BoardFileVO fileSelect(BoardFileVO boardFileVO)throws Exception{
+			return sqlSession.selectOne(NAMESPACE+"fileSelect",boardFileVO);
+		}
+		
+		//Insert   //method명은 id와 동일하게
 		public int fileInsert(BoardFileVO boardFileVO) throws Exception{
 			
-		return sqlSession.insert((NAMESPACE+"fileInsert"),boardFileVO);
+		return sqlSession.insert(NAMESPACE+"fileInsert",boardFileVO);
 	}
 }

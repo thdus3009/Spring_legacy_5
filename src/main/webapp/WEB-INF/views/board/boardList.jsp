@@ -59,7 +59,7 @@
 						&nbsp;--&nbsp;
 					</c:forEach>
 				</c:catch>
-				<a href="./${board}/${board}Select?num=${vo.num}">${vo.title}</a></td>
+				<a href="./${board}Select?num=${vo.num}">${vo.title}</a></td>
 				<td>${vo.writer}</td>
 				<td>${vo.regDate}</td>
 				<td>${vo.hit}</td>

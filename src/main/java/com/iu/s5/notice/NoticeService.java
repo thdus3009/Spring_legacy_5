@@ -56,7 +56,7 @@ private BoardFileDAO boardFileDAO;
 
 	@Override
 	public int boardWrite(BoardVO boardVO, MultipartFile [] files) throws Exception {
-		String path = servletContext.getRealPath("/resources/uploadNotice");
+		String path = servletContext.getRealPath("/resources/noticeUpload");
 		System.out.println(path);
 		
 		//sequence의 번호 받아오기

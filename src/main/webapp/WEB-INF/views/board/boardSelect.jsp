@@ -18,6 +18,15 @@
 		<h1>&nbsp; &nbsp;Contents : ${vo.contents}</h1>
 	</div>
 	
+	
+	<div>
+		<c:forEach items="${vo.boardFileVOs}" var="file">
+		<div>
+			<a href="../boardFile/fileDown?fileNum=${file.fileNum}&board=${file.board}">${file.oriName}</a>
+		</div>
+		</c:forEach>
+	</div>
+	
 	<div><br><br>
 		&nbsp; &nbsp;<button><a href="./${board}Update?num=${vo.num}">Update</a></button>
 		&nbsp; &nbsp;<button><a href="./${board}Delete?num=${vo.num}">Delete</a></button>

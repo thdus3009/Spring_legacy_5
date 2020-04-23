@@ -8,6 +8,26 @@
 	<!-- 주의 : insert안에 세미콜론 붙이면 안된다. -->
 	<!-- sql문 작성 -->
 	
+	<!-- column명과 변수명이 다를때 사용 -->
+	<resultMap type="NoticeVO" id="selectResult">
+		<id column="num" property="num"/>
+		<result column="title" property="title"/>
+		<result column="writer" property="writer"/>
+		<result column="contents" property="contents"/>
+		<result column="regDate" property="regDate"/>
+		<result column="hit" property="hit"/>
+		
+		<!-- 1:N의 관계 > collection -->
+		<collection property="boardFileVOs" javaType="List" ofType="BoardFileVO"><!-- property : NoticeVO클래스의 멤버변수명 -->
+		<!-- boardFileVOs는 BoardFileVO를 모아놓았다는 뜻 -->	
+			<id column="fileNum" property="fileNum"/>
+			<result column="fileName" property="fileName"/>
+			<result column="oriName" property="oriName"/>
+			<result column="board" property="board"/>
+		</collection>
+	</resultMap>
+	
+	
 	
 	<sql id="search">
 		like '%'||#{search}||'%'
@@ -59,8 +79,11 @@
 	
 	
 	
-	<select id="boardSelect" parameterType="Long" resultType="NoticeVO">
-		select * from notice2 where num=#{num}
+	<select id="boardSelect" parameterType="Long" resultMap="selectResult">
+		SELECT N.*,B.*
+		FROM NOTICE2 N INNER JOIN BOARDFILE B
+		ON (N.NUM = B.NUM)
+		WHERE N.NUM=#{num} AND B.BOARD=1
 	</select>
 	
 	

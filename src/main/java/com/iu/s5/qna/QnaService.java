@@ -55,7 +55,7 @@ private BoardFileDAO boardFileDAO;
 		//insert끝나버리기 전에 sequence 번호를 먼저 가져온다.
 		int result = qnaDAO.boardWrite(boardVO);
 		//파일저장되는 폴더이름
-		String path = servletContext.getRealPath("/resources/uploadQna");
+		String path = servletContext.getRealPath("/resources/qnaUpload");
 		
 		for(MultipartFile file : files) {
 			BoardFileVO boardFileVO = new BoardFileVO();
