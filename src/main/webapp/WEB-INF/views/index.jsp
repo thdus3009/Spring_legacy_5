@@ -58,5 +58,20 @@
     </a>
   </div>
 </div>
+
+
+
+<button id="btn">BUTTON</button>
+<script type="text/javascript">
+	$("#btn").click(function(){
+		//jquery ajax
+		//GET방식(url주소 ?parameter타입, function(변수명){})
+		$.get("./notice/noticeSelect?num=30", function(result){
+			console.log(result);		
+		});
+			alert("finish");
+	});
+</script>
+
 </body>
 </html>

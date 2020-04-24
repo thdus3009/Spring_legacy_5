@@ -23,7 +23,7 @@ public class QnaService implements BoardService {
 private QnaDAO qnaDAO;
 @Autowired
 private FileSaver fileSaver;
-@Autowired
+//@Autowired
 private ServletContext servletContext;
 @Autowired
 private BoardFileDAO boardFileDAO;

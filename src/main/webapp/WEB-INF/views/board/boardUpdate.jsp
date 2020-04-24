@@ -23,20 +23,21 @@
     <div class="form-group">
 	   	  <label for="comment">Title:</label>
 	      <input type="text" value="${vo.title}" class="form-control" id="title" name="title">
+	      
 	      <label for="comment">Writer:</label>
-	      <input type="text" disabled="disabled" value="${vo.writer}" class="form-control" id="writer" name="writer">
+	      <input type="text" class="form-control" id="writer" name="writer"  value="${member.id}" readonly="readonly" >
+	      
 	      <label for="comment">Contents:</label>
 	      <textarea class="form-control" rows="20" id="contents" name="contents">${vo.contents}</textarea>
       <br>
+      
       <input type="submit" class="btn btn-primary" value="수정완료">
     </div>
   </form>
 </div>
 	
-	<script type="text/javascript">
-		$("#contents").summernote({
-			height : 400
-		});
-	</script>
+<script type="text/javascript" src="../resources/js/boardForm.js">
+
+</script>	
 </body>
 </html>

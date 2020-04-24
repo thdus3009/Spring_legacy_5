@@ -20,12 +20,12 @@
 		
 		<div class="form-group">
       <label for="title">TITLE:</label>
-      <input type="text" class="form-control" id="title" name="title">
+      <input type="text" class="form-control" id="title" name="title" >
     	</div>
     	
     	<div class="form-group">
-      <label for="writer">WRITER:</label>
-      <input type="text" class="form-control" id="writer" name="writer">
+      <label for="writer">WRITER:</label><!-- 로그인 하고 사용해야함 / tile contents내용이 있는지없는지-->
+      <input type="text" class="form-control" id="writer" name="writer" value="${member.id}" readonly="readonly">
     	</div>
     	
 		<div class="form-group">
@@ -34,27 +34,22 @@
     	</div>
     	
     	
-    	<div class="form-group">
-      <label for="files">File:</label>
-      <input type="file" class="form-control" name="files">
-      <input type="file" class="form-control" name="files">
-    	</div>
-    	
-		
-		<button type="submit" class="btn btn-default">write</button>
+    	<input type="button" id="add" class="btn btn-info" value="AddFile">
+    	<br>
+    	<div id="file"></div>
+		<br>
+
+
+		<input type="button" id="btn" class="btn btn-default" value="write"></input>
 		</form>
 		
 	</div>
 	</div>
 	
-<script type="text/javascript">
-	//$("선택자").action();
-
-	$(document).ready(function() {
-		$('#contents").summernote({
-			height : 400
-		});
-	});
+<script type="text/javascript" src="../resources/js/boardForm.js">
+	/* main > webapp > resources > js > boardForm */
+ 
+ 
 </script>	
 
 </body>

@@ -1,5 +1,6 @@
 package com.iu.s5.notice;
 
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -63,9 +64,15 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="noticeWrite", method = RequestMethod.POST)//boardWrite에 썼던 name의 이름과 같은 변수명을 써야함(현재 파일넣는게 2개니까 배열 [])
-	public ModelAndView boardWrite(NoticeVO noticeVO , MultipartFile [] files , ModelAndView mv) throws Exception{		
+	public ModelAndView boardWrite(HttpServletRequest request , BoardVO boardVO , MultipartFile [] files , ModelAndView mv) throws Exception{		
 	
-		int result =noticeService.boardWrite(noticeVO, files);
+//		Enumeration<String> er = request.getParameterNames();//넘어오는 파라미터 이름 꺼내오기
+//		
+//		while(er.hasMoreElements()) {
+//			System.out.println(er.nextElement());
+//		}
+		
+		int result =noticeService.boardWrite(boardVO, files);
 		
 		if(result>0) {
 			//성공하면 redirect 실패하면 forward

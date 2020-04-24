@@ -59,15 +59,14 @@
 			(select N.*, rownum R from				
 				(select * from notice2 where 
 				<choose><!-- mybatis에서 제공하는 switch문과 유사한것 : choose /mybatis.org들어가서 확인해보기-->
-					<when test="kind=='bw'">
-						writer
+					<when test="kind=='bc'">
+						contents
 					</when>
-					
 					<when test="kind=='bt'">
 						title
 					</when>
 					<otherwise>
-						contents
+						writer
 					</otherwise>
 				</choose>
 				<!-- || : 쿼리문을 연결시켜준다. / #{}자체에 ''의 의미를 가지고 있다. -->
@@ -83,7 +82,7 @@
 		SELECT N.*,B.*
 		FROM NOTICE2 N INNER JOIN BOARDFILE B
 		ON (N.NUM = B.NUM)
-		WHERE N.NUM=#{num} AND B.BOARD=1
+		WHERE N.NUM=#{num}
 	</select>
 	
 	
