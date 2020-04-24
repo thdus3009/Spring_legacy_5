@@ -43,6 +43,7 @@
 	</div>
 	
 	<script type="text/javascript">
+	/* ............................2번째.더보기................................ */
 		var count=1;
 		function getList(curPage) {
 			$.get("getList?curPage="+curPage, function(result) {
@@ -59,7 +60,7 @@
 			getList(count);
 		});
 		
-	
+	/* .............................1번째.정보............................... */
 	
 		$("#btn").click(function() {
 			var writer = $("#writer").val();
@@ -69,6 +70,7 @@
 			$("#contents").val('');
 			//$.get("url?name=value")
 			//$.post()
+			
 			$.post("./memoInsert", {writer:writer, contents:contents}, function(result) {
 					result = result.trim();
 					if(result>0){

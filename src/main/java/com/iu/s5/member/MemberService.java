@@ -38,6 +38,11 @@ public class MemberService {
 	 * 
 	 */
 	//하드디스크 db둘중 뭐를 먼저지워야할까 ? db먼저 지우고 하드디스크에 있는 파일을 삭제해야한다.
+	
+	public MemberVO memberIdCheck(MemberVO memberVO)throws Exception{
+		return memberDAO.memberIdCheck(memberVO);
+	}
+	
 	public int fileDelete(String id, HttpSession session)throws Exception{
 		MemberFileVO memberFileVO = memberFileDAO.fileSelect(id);
 		

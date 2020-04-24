@@ -34,7 +34,8 @@
 			
 	<div class="form-group">
       <label for="id">ID:</label>
-      <input type="text" class="form-control" id="id" value="${id}" placeholder="Enter Id" name="id">
+      <input type="text" class="form-control" id="id" placeholder="Enter Id" name="id">
+    	<!-- 중복체크는 이 -->
     </div>
 
     <div class="form-group">
@@ -66,8 +67,18 @@
       
     <button type="submit" class="btn btn-default">Add</button><br><br>
     
-			
+
 			</form>
 			
 		</div>
 	</div>
+
+<script type="text/javascript">
+	$("#id").blur(function(){
+		var id = $("#id").val();
+		$.post("./memberIdCheck" , {id:id} , function(data){
+			alert(data);
+		});
+	});
+</script>
+	

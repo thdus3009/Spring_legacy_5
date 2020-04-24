@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,6 +35,24 @@ public class MemberController {
 	@Autowired //또는 @Inject
 	private MemberService memberService;
 	
+	
+	@PostMapping("memberIdCheck")
+	public ModelAndView memberIdCheck(MemberVO memberVO)throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		
+		memberVO = memberService.memberIdCheck(memberVO);
+		//null > 가입가능 - 1
+		//null이 아니면 중복 - 0
+		String result = "이미 사용중인 아이디 입니다(0)";
+		if(memberVO==null) {
+			result = "사용가능한 아이디 입니다(1)";
+		}
+		//ajaxResult로 보내기
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
 	
 	@GetMapping("fileDelete")
 	public String fileDelete(HttpSession session) throws Exception{

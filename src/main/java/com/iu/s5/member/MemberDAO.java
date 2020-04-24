@@ -19,7 +19,9 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.iu.s5.member.MemberDAO.";
 	
-	
+	public MemberVO memberIdCheck(MemberVO memberVO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"memberIdCheck", memberVO);
+	}
 
 	public long memberCount(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
