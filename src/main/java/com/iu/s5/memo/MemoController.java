@@ -24,11 +24,12 @@ public class MemoController {
 		model.addAttribute("list", ar);
 	}
 	
-	@GetMapping("memoList")
+	@GetMapping("memoList")//dispatcher servlet에서 받아옴
 	public void memoList(Pager pager) throws Exception {
 		memoService.memoList(pager);
 	}
 	
+	//다른 페이지로 이동하는게 아니라 바로 추가 해주려고 하기 때문에 getmapping이 없다.
 	@PostMapping("memoInsert")
 	public ModelAndView memoInsert(MemoVO memoVO) throws Exception{
 		ModelAndView mv = new ModelAndView();

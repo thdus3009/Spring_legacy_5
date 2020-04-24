@@ -19,7 +19,7 @@ public class Pager {
 	private String search;
 	
 	
-	public void makeRow() {
+	public void makeRow() {//this > Pager
 		System.out.println("curPage : "+this.getCurPage());
 		this.startRow = (this.getCurPage()-1)*this.getPerPage()+1;
 		

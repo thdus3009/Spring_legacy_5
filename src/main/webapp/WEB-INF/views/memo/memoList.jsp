@@ -12,6 +12,7 @@
 <c:import url="../template/header.jsp"></c:import>	
 
 	<div class="container">
+	
 		<div class="row">
 			<div class="form-group">
   				<label for="usr">Writer:</label>
@@ -26,6 +27,8 @@
 			<button id="btn" class="btn btn-danger">WRITE</button>
 		</div>
 		
+		
+		
 		<div class="row">
 			<table id="result" class="table table-striped">
 				<tr>
@@ -36,6 +39,9 @@
 				</tr>
 			</table>
 		</div>
+		
+		
+		
 		<div>
 			<button id="more">더보기</button>
 		</div>
@@ -45,7 +51,9 @@
 	<script type="text/javascript">
 	/* ............................2번째.더보기................................ */
 		var count=1;
+	
 		function getList(curPage) {
+			/* server에 get방식의 http요청을 보낼 수 있다. */
 			$.get("getList?curPage="+curPage, function(result) {
 				$("#result").append(result);
 			});	

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
-<c:forEach items="${list}" var="memo">
+<c:forEach items="${list}" var="memo"><!-- items="${list}" : List,ArrayList의미 -->
 	<tr>
 		<td>${memo.num}</td>
 		<td>${memo.contents}</td>
