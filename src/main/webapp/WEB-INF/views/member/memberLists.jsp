@@ -19,7 +19,7 @@
 				<td>${vo.name}</td>
 				<td>${vo.phone}</td>
 				<td>${vo.email}</td>
-				<td><input type="checkbox" class="c1" name="del" title="id${i.index}"></td><!-- 중복안된다면 title에  ${vo.id}사용가능-->
+				<td><input type="checkbox" class="c1" name="del" title="id${i.index}" id="${vo.id}"></td><!-- 중복안된다면 title에  ${vo.id}사용가능-->
 			</tr>
 			</c:forEach>
 		

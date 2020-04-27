@@ -49,8 +49,10 @@
 $(".fileDelete").click(function(){/* i태그 */
 	var s = $(this);
 	$.post("../boardFile/fileDelete",{fileNum:$(this).attr("id")},function(data){
-		console.log(data.trim);
- 		if(data.trim()>0){
+		data = data.trim()
+		console.log(data);
+		console.log(data>0);
+ 		if(data>0){
 				s.parent().remove();
 		}else{
 			alert("File Delete Fail");
