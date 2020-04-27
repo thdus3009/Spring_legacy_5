@@ -76,9 +76,23 @@
 <script type="text/javascript">
 	$("#id").blur(function(){
 		var id = $("#id").val();
-		$.post("./memberIdCheck" , {id:id} , function(data){
+		
+		$.ajax({
+			url:"./memberIdCheck",
+			type:"post",//method형식
+			data:{id:id},//parameter(서버로 보내는 데이터) //id만 보내도 충분하기 때문에 id만 보냄
+			
+			success:function(data){
+				alert(data);
+			},
+			error:function(){
+				alert("에러발생");
+			}
+		})
+		
+/* 		$.post("./memberIdCheck" , {id:id} , function(data){
 			alert(data);
-		});
+		}); */
 	});
 </script>
 	

@@ -21,22 +21,42 @@
   
   <input type="hidden" name="num" value="${vo.num}">
     <div class="form-group">
-	   	  <label for="comment">Title:</label>
+	   	  <label for="title">Title:</label>
 	      <input type="text" value="${vo.title}" class="form-control" id="title" name="title">
 	      
-	      <label for="comment">Writer:</label>
+	      <label for="writer">Writer:</label>
 	      <input type="text" class="form-control" id="writer" name="writer"  value="${member.id}" readonly="readonly" >
 	      
-	      <label for="comment">Contents:</label>
+	      <label for="contents">Contents:</label>
 	      <textarea class="form-control" rows="20" id="contents" name="contents">${vo.contents}</textarea>
+     
+     		<label for="files">Files:</label>
+     		<c:forEach items="${vo.boardFileVOs}" var="fileVO">
+     			<p>${fileVO.oriName}<i id="${fileVO.fileNum}" class="glyphicon glyphicon-remove remove fileDelete"></i></p>
+     		</c:forEach>
       <br>
+      
       
       <input type="submit" class="btn btn-primary" value="수정완료">
     </div>
   </form>
 </div>
 	
-<script type="text/javascript" src="../resources/js/boardForm.js">
+<script type="text/javascript" src="../resources/js/boardForm.js" >
+
+</script>
+<script type="text/javascript">
+$(".fileDelete").click(function(){/* i태그 */
+	var s = $(this);
+	$.post("../boardFile/fileDelete",{fileNum:$(this).attr("id")},function(data){
+		console.log(data.trim);
+ 		if(data.trim()>0){
+				s.parent().remove();
+		}else{
+			alert("File Delete Fail");
+		} 
+	});
+});
 
 </script>	
 </body>

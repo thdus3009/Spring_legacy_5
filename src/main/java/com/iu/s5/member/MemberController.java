@@ -1,5 +1,6 @@
 package com.iu.s5.member;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -76,6 +77,31 @@ public class MemberController {
 		 mv.addObject("pager", pager);
 		 mv.setViewName("member/memberList");
 		 return mv;
+	}
+	
+	@GetMapping("memberLists")
+	public ModelAndView memberLists(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<MemberVO> ar = memberService.memberList(pager);
+		mv.addObject("list",ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("member/memberLists");
+		
+		return mv;
+	}
+	
+	@GetMapping("memberDeletes")
+	public ModelAndView memberDeletes(String [] ids)throws Exception{
+		//배열을 list로 변환(memberMapper)
+		ModelAndView mv = new ModelAndView();
+		List<String> list = Arrays.asList(ids);
+		int result = memberService.memberDeletes(list);
+		//성공하면 0보다 크다.
+		System.out.println(result);
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+	
+		return mv;
 	}
 	
 	@RequestMapping(value= "memberDelete")

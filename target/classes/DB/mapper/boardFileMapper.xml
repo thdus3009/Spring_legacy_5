@@ -14,5 +14,9 @@
   	</select>
   	
   	
+  	<delete id="fileDelete" parameterType="BoardFileVO">
+  		delete boardFile where fileNum=#{fileNum}
+  	</delete>
+  	
   	</mapper>
   

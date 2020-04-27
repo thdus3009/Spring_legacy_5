@@ -25,7 +25,7 @@ public class NoticeService implements BoardService {
 private NoticeDAO noticeDAO;	
 @Autowired
 private FileSaver fileSaver;
-//@Autowired
+@Autowired
 private ServletContext servletContext;
 @Autowired
 private BoardFileDAO boardFileDAO;
@@ -64,8 +64,8 @@ private BoardFileDAO boardFileDAO;
 		
 		//notice table insert
 		int result = noticeDAO.boardWrite(boardVO);
-		
 		for(MultipartFile file : files) {
+			if(file.getSize()>0) {
 			BoardFileVO boardFileVO = new BoardFileVO();
 			
 			String fileName = fileSaver.saveByUtils(file, path);
@@ -77,7 +77,7 @@ private BoardFileDAO boardFileDAO;
 		//HDD에 파일을 저장하고 boardFile table insert
 			boardFileDAO.fileInsert(boardFileVO);
 		}
-		
+		}
 		return result; 
 	}
 

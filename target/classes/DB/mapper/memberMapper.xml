@@ -80,6 +80,13 @@
 		delete member where id=#{id}
 	</delete>
 	
+	<delete id="memberDeletes" parameterType="List">
+		delete member where id in
+		<foreach collection="list" item="id" open="("  close=")" separator=",">
+			#{id}		<!-- 이렇게 출력됨 : (아이디1,아이디2,..,..) -->
+		</foreach>
+	</delete>
+	
 	<update id="memberUpdate" parameterType="MemberVO">
 		update member set name=#{name},age=#{age},phone=#{phone},email=#{email} where id=#{id}
 	</update>

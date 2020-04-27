@@ -45,6 +45,10 @@ public class MemberDAO {
 		
 	}
 	
+	//memberlist delete
+	public int memberDeletes(List<String> list)throws Exception{
+		return sqlSession.delete(NAMESPACE+"memberDeletes",list);
+	}
 	
 	//delete
 	public int memberDelete(MemberVO memberVO) throws Exception{

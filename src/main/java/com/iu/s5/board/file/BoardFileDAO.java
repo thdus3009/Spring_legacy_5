@@ -23,4 +23,8 @@ import com.iu.s5.member.MemberVO;
 			
 		return sqlSession.insert(NAMESPACE+"fileInsert",boardFileVO);
 	}
+		//Delete
+		public int fileDelete(BoardFileVO boardFileVO) throws Exception{
+			return sqlSession.delete(NAMESPACE+"fileDelete",boardFileVO);
+		}
 }
