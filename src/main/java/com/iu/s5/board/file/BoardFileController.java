@@ -34,6 +34,8 @@ public class BoardFileController {
 		return mv;
 	}
 	
-	@PostMapping("fileInsert")
-	public void 
+//	@PostMapping("fileInsert")
+//	public void 
+	
+	
 }
