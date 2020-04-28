@@ -46,11 +46,12 @@
 	</div>
 	</div>
 	
-<!-- <script type="text/javascript" src="../resources/js/boardForm.js">
+ <script type="text/javascript" src="../resources/js/boardForm.js">
 	/* main > webapp > resources > js > boardForm */
  
 </script>	
- -->
+
+<!-- 
  <script type="text/javascript">
 	$("#contents").summernote({
 	height : 400 ,
@@ -70,6 +71,6 @@
 		 }
  }
 });
- </script>
+ </script> -->
 </body>
 </html>

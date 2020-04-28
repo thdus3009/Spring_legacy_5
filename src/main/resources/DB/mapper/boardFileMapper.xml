@@ -23,7 +23,7 @@
   	</delete>
   	
   	<select id="fileList" parameterType="Long" resultType="BoardFileVO">
-  		SELECT * boardFile where num=#{num}
+  		SELECT * from boardFile where num=#{num}
   	</select>
   	
   	</mapper>
