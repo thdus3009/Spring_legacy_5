@@ -41,7 +41,11 @@
 	});
 	
 	/* .......................................................... */
-	var count = 1;
+	
+	var count = 1; //하나씩늘리기
+	
+
+	
 	$("#file").on("click",".remove",function(){
 		$(this).parent().remove();
 		count--;
@@ -59,9 +63,15 @@
 	
 	/* .......................................................... */
 	
-	$("#contents").summernote({
-			height : 400
-		});
+//	$("#contents").summernote({
+//			height : 400 ,
+//			
+//			 callbacks: {
+//				 onImageUpload: function(file) {
+//					 alert("upload");
+//				 }
+//			 }
+//		});
 
 	
 		

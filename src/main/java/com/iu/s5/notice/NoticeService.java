@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileDeleteStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -82,14 +83,50 @@ private BoardFileDAO boardFileDAO;
 	}
 
 	@Override
-	public int boardUpdate(BoardVO boardVO) throws Exception {
+	public int boardUpdate(BoardVO boardVO, MultipartFile [] files) throws Exception {
+	
+		
+		String path = servletContext.getRealPath("/resources/noticeUpload");
+		System.out.println(path);
+		int result = noticeDAO.boardUpdate(boardVO);
+		System.out.println(path);
+		for(MultipartFile file : files) {
+			if(file.getSize()>0) {
+			BoardFileVO boardFileVO = new BoardFileVO();
+			
+			String fileName = fileSaver.saveByUtils(file, path);
 
-		return noticeDAO.boardUpdate(boardVO);
+			boardFileVO.setFileName(fileName);
+			boardFileVO.setOriName(file.getOriginalFilename());
+			boardFileVO.setNum(boardVO.getNum());
+			boardFileVO.setBoard(1);
+			
+			result = boardFileDAO.fileInsert(boardFileVO);
+		}
+		}		
+		
+		return result;
 	}
+	
+	
 
 	@Override
 	public int boardDelete(long num) throws Exception {
-
+		//글지우면 파일도 지우기
+		List<BoardFileVO> list = boardFileDAO.fileList(num);
+		String path = servletContext.getRealPath("/resources/noticeUpload");
+		//1.hdd에 해당파일 삭제 (memberservice와 유사)
+		path = servletContext.getRealPath("/resources/noticeUpload");
+		System.out.println(path);
+		
+		for(BoardFileVO boardFileVO : list) {
+			fileSaver.deleteFile(boardFileVO.getFileName(), path);
+		}
+		//2.db에 삭제
+		boardFileDAO.fileDeleteAll(num);
+		
 		return noticeDAO.boardDelete(num);
 	}
+	
+	
 }

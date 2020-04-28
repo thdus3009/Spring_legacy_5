@@ -18,5 +18,13 @@
   		delete boardFile where fileNum=#{fileNum}
   	</delete>
   	
+  	<delete id="fileDeleteAll" parameterType="Long">
+  		delete boardFile where num=#{num}
+  	</delete>
+  	
+  	<select id="fileList" parameterType="Long" resultType="BoardFileVO">
+  		SELECT * boardFile where num=#{num}
+  	</select>
+  	
   	</mapper>
   

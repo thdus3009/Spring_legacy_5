@@ -31,9 +31,9 @@
 	    </div>
 	    
 		</div>
-	</div>
-	
-	
+		
+		
+		
 	<div>
 		<c:forEach items="${vo.boardFileVOs}" var="file">
 		<div>
@@ -41,6 +41,12 @@
 		</div>
 		</c:forEach>
 	</div>
+		
+		
+	</div>
+	
+	
+
 	
 	<div class="container"><br><br>
 		&nbsp; &nbsp;<button><a href="./${board}Update?num=${vo.num}">Update</a></button>
