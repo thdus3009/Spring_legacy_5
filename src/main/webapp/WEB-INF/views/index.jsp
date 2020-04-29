@@ -59,10 +59,45 @@
   </div>
 </div>
 
-
-
+<!-- ........................................................................ -->
+<div class="container"><br><br>
 <button id="btn">BUTTON</button>
+<button id="btn2">BUTTON2</button>
+
 <script type="text/javascript">
+	$("#btn2").click(function(){//https://api.manana.kr/exchange
+		$.get("https://api.manana.kr/exchange/rate.json?base=KRW&code=KRW,USD,JPY", function(data){
+			console.log(data);
+			console.log(data[1].rate); // 인덱스.이름
+		});
+		
+		
+	});
+
+
+	$("#btn").click(function(){
+		
+		$.get("./json/json1", function(data) {
+			
+			//0.data가 String인지 Json Object인지 판별
+			console.log(data);
+			//console.log(data); > "name":"iu" -> string 
+			//console.log(data); > object -> json Object
+			
+			//1.Json Object 변환(2번째경우(json Object)면 1.안해도됨)
+//			data=data.trim();
+//			data=JSON.parse(data); //string 
+			console.log(data); //json Object
+			
+			console.log(data.num);
+			console.log(data.title);
+		});
+		
+	});
+
+</script>
+
+<!-- <script type="text/javascript">
 	$("#btn").click(function(){
 		//jquery ajax
 		//GET방식(url주소 ?parameter타입, function(변수명){})
@@ -71,7 +106,10 @@
 		});
 			alert("finish");
 	});
-</script>
+</script> -->
+
+<br><br></div>
+
 
 </body>
 </html>
