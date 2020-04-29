@@ -42,6 +42,60 @@
 	
 	/* .......................................................... */
 	
+	$("#contents").summernote({
+		height : 400 ,
+		
+		 callbacks: {
+			 onImageUpload: function(files, editor) {//<옆에 둘다 변수 ,files:데이터 서버에 전송,editor:summernote 자기자신 자체
+				 //ajax를 통해서 파일을 보내야함
+				var formData = new FormData(); //<form>태그와 유사
+				 
+				formData.append('files',files[0]) 
+				//append(파라미터이름(name),정보(value)): 추가 <input type="file" name=""(파라미터이름)>
+				
+				 $.ajax({
+					type : "POST",
+					url : "../boardFile/fileInsert",
+					data : formData,
+					enctype : "multipart/form-data",
+					cach: false,
+					contentType : false,
+					processData : false,
+					success : function(imageName){//결과는 매개변수로 들어간다.
+						//앞뒤 공백제거
+						imageName=imageName.trim();
+						//summernote에 넣기
+						$("#contents").summernote('editor.insertImage', imageName);
+					}
+				 });
+				
+			 },//onImageUpload 끝
+			 
+			 onMediaDelete:function(files){ //files:지우려고 하는 파일의 정보가 들어있음
+
+				 var fileName = $(files[0]).attr("src"); //fileName의 출력값에서 파일명만 필요함
+				 console.log(fileName);
+				 fileName = fileName.substring(fileName.lastIndexOf("/"));//자르려고하는 index번호 넣기
+				 console.log(fileName);
+				 $.ajax({
+					 type:"POST",
+					 url : "../boardFile/summerDelete",
+					 data : {
+						 fileName : fileName
+					 },
+				 	success : function(data){
+				 		console.log(data);
+				 	}
+				 })
+				 
+			 }//OnMediaDelete 끝
+			 
+	 }//callbacks 끝
+	});
+	
+	
+	/* .......................................................... */
+	
 	var count = 1; //하나씩늘리기
 	
 

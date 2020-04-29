@@ -51,26 +51,9 @@
  
 </script>	
 
-<!-- 
+
  <script type="text/javascript">
-	$("#contents").summernote({
-	height : 400 ,
-	
-	 callbacks: {
-		 onImageUpload: function(files) {
-			 //ajax를 통해서 파일을 보내야함
-			 $.ajax({
-				type : "POST",
-				url : "../boardFile/fileInsert",
-				enctype : "multipart/form-data",
-				cach: false,
-				contentType : false,
-				processData : false,
-				success : function(imageName){}//결과는 매개변수로 들어간다.
-			 });
-		 }
- }
-});
- </script> -->
+
+ </script> 
 </body>
 </html>
