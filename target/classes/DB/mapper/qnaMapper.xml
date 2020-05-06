@@ -51,9 +51,10 @@
 		
 	<!-- ref값이 부모의 ref와 같은 것과(&&) step이 부모의 step보다 큰것들을 step+1 업데이트 -->
 	<update id="boardReplyUpdate" parameterType="QnaVO">
-		update qna set step=step+1 
-		where ref > (select ref from qna where num=#{num}) 
-		and step > (select step from qna where num=#{num}) 
+		update qna set step=step+1 where
+		ref = (select ref from qna where num=#{num})
+		and
+		step > (select step from qna where num=#{num})
 	</update>
 	
 	<!-- 부모글 step+1한 값을 자기자신 step에 넣는다. -->
@@ -78,10 +79,6 @@
 	<delete id="boardDelete" parameterType="Long">
 		delete qna where num=#{num}
 	</delete>
-	
-	<update id="boardUpdate" parameterType="QnaVO">
-		update qna set title=#{title} , contents=#{contents} where num=#{num}
-	</update>
 
 	
 	<!-- insert,update,delete > int형

@@ -116,7 +116,6 @@ public class NoticeController {
 	@RequestMapping(value = "noticeUpdate", method = RequestMethod.POST )
 	public String boardUpdate(NoticeVO noticeVO, MultipartFile [] files)throws Exception{
 		
-
 		int result = noticeService.boardUpdate(noticeVO, files);
 		String path="";
 		

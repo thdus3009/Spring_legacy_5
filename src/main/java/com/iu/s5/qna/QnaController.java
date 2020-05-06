@@ -128,11 +128,14 @@ public class QnaController {
 	
 	
 	//update
-	@RequestMapping(value = "qnaUpdate", method = RequestMethod.GET)
-	public String boardUpdate(long num, Model model)throws Exception{
-		 BoardVO boardVO = qnaService.boardSelect(num);
-		 model.addAttribute("vo", boardVO);
-		return "board/boardUpdate";
+	@GetMapping("qnaUpdate")
+	public ModelAndView boardUpdate(long num)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		BoardVO boardVO = qnaService.boardSelect(num);
+		
+		mv.addObject("vo", boardVO);
+		mv.setViewName("board/boardUpdate");
+		return mv;
 	}
 	
 	@RequestMapping(value = "qnaUpdate", method = RequestMethod.POST)

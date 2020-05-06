@@ -41,9 +41,13 @@
 		<br>
      <!-- boardFileVOs > 여러개 > list,map,배열 / NoticeVO에서 확인하면 list임을 알수있다.-->
     		<label for="files">Files:</label>
+    		<c:catch>
+    		
      		<c:forEach items="${vo.boardFileVOs}" var="fileVO">
      			<p>${fileVO.oriName}<i id="${fileVO.fileNum}"  title="${fileVO.board}" class="glyphicon glyphicon-remove remove fileDelete"></i></p>
      		</c:forEach>
+     		
+     		</c:catch>
 
       <br>
       

@@ -28,6 +28,52 @@
 		<beans:property name="order" value="0"></beans:property>
 	</beans:bean>
 
+<beans:bean class="com.iu.s5.interceptor.NoticeInterceptor" id="noticeInterceptor"></beans:bean>
+<beans:bean class="com.iu.s5.interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
+<beans:bean class="com.iu.s5.interceptor.QnaInterceptor" id="qnaInterceptor"></beans:bean>
+
+	<!-- 2가지 정보필요 / 순서가 중요 -->
+	<interceptors>
+	
+		<interceptor>
+			<mapping path="/qna/*"/>
+			<exclude-mapping path="/qna/qnaList"/>
+			<beans:ref bean="qnaInterceptor"/>
+		</interceptor>
+	
+		<interceptor>
+<!-- 		
+			방법1. mapping 은 중복으로도 가능하다
+			<mapping path="/notice/noticeWrite"/>
+			<mapping path="/notice/noticeUpdate"/>
+			<mapping path="/notice/noticeDelete"/>
+			 -->
+			
+			<!--방법2. List, Select 제외 admin만 접근가능 -->
+			<mapping path="/notice/*"/>
+			<exclude-mapping path="/notice/noticeList"/>
+			<exclude-mapping path="/notice/noticeSelect"/>	
+			
+					
+			<!-- beans:ref 만들어진 객체를 참조하자는 의미 / bean안에 참조하고자하는 객체 id넣기-->
+			<beans:ref bean="noticeInterceptor"/>
+			
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/member/memberMyPage"/>
+			<beans:ref bean="memberInterceptor"/>
+		</interceptor>
+	
+		<interceptor>
+			<!-- 1. URL 패턴 / 모든주소는 controller거쳐가기("/*") -->
+			<mapping path="/*"/>
+
+			<!-- 2. Interceptor class / interceptor를 만들면서 시작하겠다는 의미 beans:bean안에 preHandle,postHandle,afterCompletion존재 -->
+			<beans:bean class="com.iu.s5.interceptor.TestInterceptor"></beans:bean>
+		</interceptor>
+		
+	</interceptors>
 	
 	<context:component-scan base-package="com.iu.s5" />
 	
