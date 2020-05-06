@@ -5,10 +5,10 @@
 	
 	<!-- Connection Pool -->
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
-		<property name="username" value="user02" />
-		<property name="password" value="user02" />
-		<property name="url" value="jdbc:oracle:thin:@192.168.56.101:1521:xe" />
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="username" value="${oracle.user}" />
+		<property name="password" value="${oracle.pw}" />
+		<property name="url" value="${oracle.uri}" />
+		<property name="driverClassName" value="${oracle.driver}" />
 	</bean>
 	
 	<!-- SqlSessionFactoryBean -->
