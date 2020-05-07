@@ -44,18 +44,11 @@ public class HomeController {
 		 * model.addAttribute("serverTime", formattedDate );
 		 */
 
+		transfer.bus(1000);
+
+		transfer.subway(2000,"2호선");
 		
-		Transfer transfer = new Transfer();
-		Card card = new Card();
-		
-		card.cardCheck();
-		transfer.bus();
-		card.cardCheck();
-		
-		card.cardCheck();
-		transfer.subway();
-		card.cardCheck();
-		
+		transfer.taxi();
 		
 		return "index";
 	}

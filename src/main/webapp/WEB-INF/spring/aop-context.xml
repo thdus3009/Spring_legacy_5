@@ -6,13 +6,21 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
 
-<bean class="com.iu.s5.transfer.Transfer" id="transfer"></bean><!-- new transfer 선언  -->
-
-<!-- 	<bean class="com.iu.s5.transfer.Card" id="card"></bean>
-	<aop:config>
-		<aop:aspect id="cardCheck" ref="card">ref: 해당아이디의 어떤 부분을 참조한다는 뜻
-			<aop:pointcut expression="" id=""/>
-		</aop:aspect>
-	</aop:config> -->
+	<bean class="com.iu.s5.transfer.Transfer" id="transfer"></bean>
 	
+	<bean class="com.iu.s5.transfer.Card" id="card"></bean>
+	
+	<aop:config>
+		<aop:aspect id="cardCheck" ref="card">
+<!-- 			<aop:pointcut expression="execution(* com.iu.s5.transfer.Transfer.*(..))" id="trans"/> -->
+			<aop:pointcut expression="execution(* com.iu.s5.transfer.Transfer.*(*, *))" id="trans"/>
+			<aop:around method="cardCheck" pointcut-ref="trans"/>
+		</aop:aspect>
+		
+		<aop:aspect id="taxicard" ref="card">
+			<aop:pointcut expression="execution(* com.iu.s5.transfer.Transfer.*())" id="ta"/>
+			<aop:after-returning method="cardAfter" pointcut-ref="ta"/>
+		</aop:aspect>
+		
+	</aop:config>
 </beans>
