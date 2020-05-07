@@ -23,6 +23,11 @@
 hs_err_pid*
 target/classes/DB/config/db.properties
 src/main/resources/DB/config/db.properties
+<<<<<<< HEAD
 target/m2e-wtp/web-resources/META-INF/maven/com.iu/s5/pom.properties
 src/main/java/com/iu/s5/transfer/Transfer.java
 src/main/java/com/iu/s5/transfer/Card.java
+=======
+>>>>>>> parent of dac164d... dd
+src/main/webapp/WEB-INF/spring/root-context.xml
+target/m2e-wtp/web-resources/META-INF/maven/com.iu/s5/pom.properties
