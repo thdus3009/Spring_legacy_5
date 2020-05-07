@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 	
-	<!-- Connection Pool -->
+	<!-- Root Context -->
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
-		<property name="username" value="user02" />
-		<property name="password" value="user02" />
-		<property name="url" value="jdbc:oracle:thin:@192.168.56.101:1521:xe" />
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="username" value="#{db['oracle.user']}" />
+		<property name="password" value="#{db['oracle.pw']}" />
+		<property name="url" value="#{db['oracle.url']}" />
+		<property name="driverClassName" value="#{db['oracle.driver']}" />
 	</bean>
+	
+	<util:properties location="classpath:DB/config/db.properties" id="db"></util:properties>
+	
+	
 	
 	<!-- SqlSessionFactoryBean -->
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
