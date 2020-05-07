@@ -80,7 +80,7 @@
 	
 	<select id="boardSelect" parameterType="Long" resultMap="selectResult">
 		SELECT N.*,B.*
-		FROM NOTICE2 N INNER JOIN BOARDFILE B
+		FROM NOTICE2 N LEFT JOIN BOARDFILE B
 		ON (N.NUM = B.NUM)
 		WHERE N.NUM=#{num}
 	</select>

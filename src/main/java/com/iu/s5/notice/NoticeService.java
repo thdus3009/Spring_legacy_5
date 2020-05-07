@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.io.FileDeleteStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.s5.board.BoardService;
@@ -102,6 +103,9 @@ private BoardFileDAO boardFileDAO;
 			boardFileVO.setBoard(1);
 			
 			result = boardFileDAO.fileInsert(boardFileVO);
+			if(result<1) {
+				throw new Exception();
+			}
 		}
 		}		
 		
