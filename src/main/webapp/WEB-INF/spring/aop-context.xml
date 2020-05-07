@@ -6,13 +6,13 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
 
-<!-- 	<bean class="com.iu.s5.transfer.Transfer" id="transfer"></bean>new transfer 선언 -->
+<bean class="com.iu.s5.transfer.Transfer" id="transfer"></bean><!-- new transfer 선언  -->
 
-	<bean class="com.iu.s5.transfer.Card" id="card"></bean>
+<!-- 	<bean class="com.iu.s5.transfer.Card" id="card"></bean>
 	<aop:config>
-		<aop:aspect id="cardCheck" ref="card"><!-- ref: 해당아이디의 어떤 부분을 참조한다는 뜻 -->
+		<aop:aspect id="cardCheck" ref="card">ref: 해당아이디의 어떤 부분을 참조한다는 뜻
 			<aop:pointcut expression="" id=""/>
 		</aop:aspect>
-	</aop:config>
+	</aop:config> -->
 	
 </beans>
