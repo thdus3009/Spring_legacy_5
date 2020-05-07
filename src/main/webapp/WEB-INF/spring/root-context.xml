@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+
+
+
+
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<!-- Connection Pool -->
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" id="propertyPlaceholderConfigurer">
+      <property name="locations" value="classpath:DB/config/*.properties"></property>
+   </bean>
+	
+	<!-- Connection Pool > db.properties에 정보있음 git에는 정보가 안보인다.(db.properties는 ignore해준다)-->
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
 		<property name="username" value="${oracle.user}" />
 		<property name="password" value="${oracle.pw}" />

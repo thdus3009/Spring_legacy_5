@@ -28,6 +28,10 @@
 		<beans:property name="order" value="0"></beans:property>
 	</beans:bean>
 
+	<beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" id="propertyPlaceholderConfigurer">
+      <beans:property name="locations" value="classpath:DB/config/*.properties"></beans:property>
+   </beans:bean>
+
 <beans:bean class="com.iu.s5.interceptor.NoticeInterceptor" id="noticeInterceptor"></beans:bean>
 <beans:bean class="com.iu.s5.interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
 <beans:bean class="com.iu.s5.interceptor.QnaInterceptor" id="qnaInterceptor"></beans:bean>
