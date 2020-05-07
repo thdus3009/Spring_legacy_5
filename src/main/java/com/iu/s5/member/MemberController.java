@@ -162,8 +162,9 @@ public class MemberController {
 	}
 	@RequestMapping(value="memberLogin", method=RequestMethod.POST)
 	public ModelAndView memberLogin2(ModelAndView mv, MemberVO memberVO,String remember, HttpSession session, HttpServletResponse response)throws Exception {
-		//remember me를 누르고 sysout안에 remember를 받아오면 remember이 출력되고 안누르면 출력이 안된다.
-		Cookie cookie = new Cookie("cid", "");
+		//remember me(id저장)를 누르고 sysout안에 remember를 받아오면 remember이 출력되고 안누르면 출력이 안된다.
+		//밸류값을 비워두고 id저장하면 밸류값이 채워진다.
+		Cookie cookie = new Cookie("cId", "");
 		
 		if(remember != null) {
 //			cookie = new Cookie("cid", memberVO.getId());

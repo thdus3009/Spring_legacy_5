@@ -25,7 +25,7 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="id">ID:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="id" value="${cookie.cid.value}" placeholder="Enter ID" name="id">
+						<input type="text" class="form-control" id="id" value="${cookie.cId.value}" placeholder="Enter ID" name="id">
 					</div>
 				</div>
 				

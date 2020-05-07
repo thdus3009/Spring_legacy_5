@@ -14,13 +14,15 @@
 		<result column="phone" property="phone"/>
 		<result column="age" property="age"/>
 		
-		<!-- 객체가 1개인 경우 1:1-->
+		<!-- 객체가 1개인 경우 1:1 / null값으로 비워질 수 도 있음-->
 		<association property="memberFileVO" javaType="MemberFileVO">
 			<result column="fileName" property="fileName"/>
 			<result column="oriName" property="oriName"/>
 		</association> <!-- association이 memberVO가 되는것 -->
 		
 	</resultMap> <!-- mPw라는 컬럼명이 나오면 MemberVO의 pw에 넣는다. / primary key로 꺼내는건 id, 나머지는 다 result -->
+
+<!-- ....................................................................... -->
 
 <sql id="search">
 	like '%'||#{search}||'%'
@@ -43,6 +45,7 @@
 		</choose>
 	</sql>
 
+<!-- ....................................................................... -->
 
 	<select id="memberIdCheck" resultType="MemberVO" parameterType="MemberVO"><!-- String쓰면 가끔 버그발생 -->
 		select id from member where id=#{id}

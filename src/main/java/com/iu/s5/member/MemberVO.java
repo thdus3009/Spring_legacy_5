@@ -11,7 +11,7 @@ public class MemberVO {
 		private String email;
 		private String phone;
 		private MemberFileVO memberFileVO;
-		
+		//memberfileVO 받아오기
 		
 		
 		public MemberFileVO getMemberFileVO() {
